@@ -8,6 +8,7 @@ let config = {
       path: path.resolve(__dirname, "./public"),
       filename: "./dist/bundle.js"
     },
+    devtool: 'source-map',
     module: {
         rules: [{
           test: /\.js$/,
