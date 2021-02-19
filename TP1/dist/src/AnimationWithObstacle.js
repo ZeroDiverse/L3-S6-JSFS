@@ -1,5 +1,6 @@
+import Animation from './Animation'
 
-class AnimationWithObstacle extends Animation {
+export default class AnimationWithObstacle extends Animation {
     constructor(canvas, context, obstacle) {
         super(canvas, context);
         this.obstacle = obstacle;
@@ -8,14 +9,14 @@ class AnimationWithObstacle extends Animation {
     moveAndDraw() {
         var that = this;
 
-        this.balls = this.balls.filter(function(e) {
+        this.balls = this.balls.filter(function (e) {
             return !e.collisionWith(that.obstacle);
         });
-        
-        this.balls.forEach(function(e) {
-            if(!that.STOP)
+
+        this.balls.forEach(function (e) {
+            if (!that.STOP)
                 e.move();
-            e.draw();   
+            e.draw();
         });
 
         this.obstacle.move(this.canvas);
@@ -24,20 +25,20 @@ class AnimationWithObstacle extends Animation {
 
     keyDownActionHandler(event) {
         switch (event.key) {
-              case "ArrowLeft":
-              case "Left":
-                  this.obstacle.moveLeft();
-                  break;
-              case "ArrowRight":
-              case "Right":
-                  this.obstacle.moveRight();
-                  break;
-              default: return;
-          }
-          event.preventDefault();
-      }
+            case "ArrowLeft":
+            case "Left":
+                this.obstacle.moveLeft();
+                break;
+            case "ArrowRight":
+            case "Right":
+                this.obstacle.moveRight();
+                break;
+            default: return;
+        }
+        event.preventDefault();
+    }
 
-      keyUpActionHandler(event) {
+    keyUpActionHandler(event) {
         switch (event.key) {
             case "ArrowLeft":
             case "Left":

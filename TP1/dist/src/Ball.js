@@ -1,5 +1,7 @@
+import {DEFINE} from './DEFINE'
+import Obstacle from './Obstacle'
 
-class Ball {
+export default class Ball {
     constructor(canvas, context, x, y, deltaX, deltaY) {
         this.canvas = canvas;
         this.context = context;
