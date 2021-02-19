@@ -18,6 +18,6 @@ test_tp1:
 
 test_tp2:
   script:
-    - cd ./TP1
+    - cd ./TP2
     - npm install
     - npm run webpack
