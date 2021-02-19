@@ -9,9 +9,15 @@ cache:
   paths:
     - node_modules/
 
-test_async:
+test_tp1:
   script:
     - cd ./TP1
     - npm install
     - npm run webpack
 
+
+test_tp2:
+  script:
+    - cd ./TP1
+    - npm install
+    - npm run webpack
