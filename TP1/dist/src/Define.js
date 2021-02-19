@@ -1,16 +1,15 @@
+export const MoveState = { LEFT : 0, RIGHT : 1, NONE : 2};
 
-const MoveState = { LEFT : 0, RIGHT : 1, NONE : 2};
-
-const DEFINE = {
+export const DEFINE = {
     SRC_IMG: "images/balle.png",
     SIZE: 48
 }
 
-function alea(n) {
+export function alea(n) {
     return Math.floor(Math.random() * Math.floor(n));
 }
 
-function alea_delta(n) {
+export function alea_delta(n) {
     var x = Math.floor(Math.random() * Math.floor(n));
     var y = Math.floor(Math.random() * Math.floor(n));
 

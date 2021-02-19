@@ -1,5 +1,6 @@
+import {MoveState} from './Define'
 
-class Obstacle {
+export default class Obstacle {
     constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
@@ -28,11 +29,11 @@ class Obstacle {
     }
 
     move(box) {              // déplace sans sortir des limites de *box*
-        if (this.moving === MoveState.LEFT) {  
-          this.x = Math.max(0, this.x + this.shiftX);
+        if (this.moving === MoveState.LEFT) {
+            this.x = Math.max(0, this.x + this.shiftX);
         }
         if (this.moving === MoveState.RIGHT) {
-          this.x = Math.min(box.width - this.width, this.x + this.shiftX);
+            this.x = Math.min(box.width - this.width, this.x + this.shiftX);
         }
     }
 }

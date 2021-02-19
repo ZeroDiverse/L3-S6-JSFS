@@ -1,3 +1,5 @@
+import AnimationWithObstacle from './AnimationWithObstacle'
+import Obstacle from './Obstacle'
 
 const myCanvas = document.getElementById("terrain");
 const context = myCanvas.getContext("2d");
@@ -22,17 +24,24 @@ function update() {
     const raf = window.requestAnimationFrame(update);
 }
 
+const buttonStopStartBall = document.getElementById("stopStartBall");
+
+buttonStopStartBall.addEventListener("click", animationButton);
+
 function animationButton() {
-    button = document.getElementById("stopStartBall");
-    if(button.innerText == "Start") {
-        button.innerText = "Stop";
+    if(buttonStopStartBall.innerText == "Start") {
+        buttonStopStartBall.innerText = "Stop";
         animation.start();
     } else {
-        button.innerText = "Start";
+        buttonStopStartBall.innerText = "Start";
         animation.stop();
     }
     
 }
+
+const buttonAddBall = document.getElementById("addBall");
+
+buttonAddBall.addEventListener('click', addBall)
 
 function addBall() {
     animation.addBall();
