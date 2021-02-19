@@ -1,6 +1,6 @@
 import Game from './Game'
 import { STARSHIP_POSITION_X, STARSHIP_WIDTH } from './Source';
-import StarShip from './StarShip'
+import StarShip from './Starship'
 
 const canvas = document.getElementById("stars");
 const context = canvas.getContext("2d");
