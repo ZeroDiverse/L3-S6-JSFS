@@ -1,4 +1,4 @@
-import {DEFINE} from './DEFINE'
+import {DEFINE} from './Define'
 import Obstacle from './Obstacle'
 
 export default class Ball {
