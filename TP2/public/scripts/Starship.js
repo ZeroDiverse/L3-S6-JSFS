@@ -2,8 +2,8 @@ import Mobile from './Mobile'
 import {STARSHIP_HEIGHT, STARSHIP_IMG_SOURCE, STARSHIP_WIDTH} from './Source'
 
 export default class StarShip extends Mobile {
-    constructor(x, y, deltaX, deltaY) {
-        super(x, y, deltaX, deltaY)
+    constructor(x, y) {
+        super(x, y, 0, 8)
         this.img = this.init_img();
     }
 

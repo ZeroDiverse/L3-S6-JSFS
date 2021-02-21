@@ -5,10 +5,17 @@ import StarShip from './Starship'
 const canvas = document.getElementById("stars");
 const context = canvas.getContext("2d");
 
-const starship = new StarShip(STARSHIP_POSITION_X, canvas.height / 2 - STARSHIP_WIDTH / 2, 0, 0)
+const starship = new StarShip(STARSHIP_POSITION_X, canvas.height / 2 - STARSHIP_WIDTH / 2)
 
 const theGame = new Game(canvas, canvas.width, canvas.height, starship)
 
+const oneSaucerButton = document.getElementById('nouvelleSoucoupe')
+
+oneSaucerButton.addEventListener("click", createOneSaucer);
+
+function createOneSaucer() {
+    theGame.addSaucer()
+}
 
 function update() {
 
@@ -23,8 +30,7 @@ function update() {
 const init = () => {
     theGame.initStarship()
 
-    update();
-
+    //update();
 }
 
 window.addEventListener("load", init);
