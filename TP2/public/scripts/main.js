@@ -21,16 +21,18 @@ function update() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    theGame.initStarship()
+    theGame.update()
 
     const raf = window.requestAnimationFrame(update);
 }
 
 // mise en place de l'action des clics sur les boutons + les gestionnaires du clavier pour contrôler le starship
 const init = () => {
-    theGame.initStarship()
 
-    //update();
+    window.addEventListener('keydown', theGame.starship.keyDownActionHandler.bind(theGame.starship));
+    window.addEventListener('keyup', theGame.starship.keyUpActionHandler.bind(theGame.starship));
+
+    update();
 }
 
 window.addEventListener("load", init);

@@ -6,6 +6,7 @@ export default class Mobile {
         this.deltaX = deltaX;
         this.deltaY = deltaY;
         this.img = this.init_img();
+        this.active = true;
     }
 
     init_img() {
@@ -22,13 +23,13 @@ export default class Mobile {
     }
 
     move(){
-        if(this.x + this.deltaX < 0 || this.x + this.deltaX > this.canvas.width - DEFINE.SIZE)
-            this.deltaX = -this.deltaX;
-        if(this.y + this.deltaY < 0 || this.y + this.deltaY > this.canvas.height - DEFINE.SIZE)
-            this.deltaY = -this.deltaY;
-
         this.x += this.deltaX;
         this.y += this.deltaY;
+    }
+
+    update(context) {
+        this.move();
+        this.draw(context);
     }
 
     collisionWith(saucer) {

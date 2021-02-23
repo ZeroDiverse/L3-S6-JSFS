@@ -4,6 +4,7 @@ export default class Game {
 
     constructor(canvas, width, height, starship) {
         this.canvas = canvas
+        this.context = canvas.getContext("2d");
         this.width = width
         this.height = height
         //Starship - player
@@ -14,15 +15,25 @@ export default class Game {
         this.score = 0
     }
 
-
-    initStarship() {
-        this.starship.draw(this.canvas.getContext("2d"))
-    }
-
     addSaucer() {
         const newSaucer = new Saucer(this.canvas.width - 100, Math.random() * this.canvas.height / 2)
-        newSaucer.draw(this.canvas.getContext("2d"))
+        // newSaucer.draw(this.canvas.getContext("2d"))
         this.saucers.push(newSaucer)
+    }
+
+    update() {
+        let that = this;
+
+        this.starship.move(this.canvas);
+        this.starship.draw(this.context);
+
+        this.saucers = this.saucers.filter(element => element.active);
+
+        this.saucers.forEach((element) => {
+            element.update(that.context);
+        });
+
+        // console.log(this.saucers);
     }
 
 }

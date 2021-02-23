@@ -18,4 +18,10 @@ export default class Saucer extends Mobile {
     draw(context){
         context.drawImage(this.img, this.x, this.y); 
     }
+
+    move() {
+        if(this.x < 0)
+            this.active = false;
+        super.move();
+    }
 }
