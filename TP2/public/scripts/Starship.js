@@ -37,7 +37,7 @@ export default class StarShip extends Mobile {
             this.y = Math.max(0, this.y + this.shiftY);
         }
         if (this.moving === MoveState.DOWN) {
-            this.y = Math.min(box.width - STARSHIP_WIDTH, this.y + this.shiftY);
+            this.y = Math.min(box.height - STARSHIP_WIDTH, this.y + this.shiftY);
         }
     }
 
