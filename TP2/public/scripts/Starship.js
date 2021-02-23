@@ -16,5 +16,31 @@ export default class StarShip extends Mobile {
         return img;
     }
 
-    
+    keyDownActionHandler(event) {
+        switch (event.key) {
+            case "ArrowLeft":
+            case "Left":
+                this.obstacle.moveLeft();
+                break;
+            case "ArrowRight":
+            case "Right":
+                this.obstacle.moveRight();
+                break;
+            default: return;
+        }
+        event.preventDefault();
+    }
+
+    keyUpActionHandler(event) {
+        switch (event.key) {
+            case "ArrowLeft":
+            case "Left":
+            case "ArrowRight":
+            case "Right":
+                this.obstacle.stopMoving();
+                break;
+            default: return;
+        }
+        event.preventDefault();
+    }
 }

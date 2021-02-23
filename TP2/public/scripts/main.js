@@ -19,9 +19,7 @@ function createOneSaucer() {
 
 function update() {
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
-
-    theGame.initStarship()
+    theGame.update()
 
     const raf = window.requestAnimationFrame(update);
 }
@@ -30,7 +28,7 @@ function update() {
 const init = () => {
     theGame.initStarship()
 
-    //update();
+    update()
 }
 
 window.addEventListener("load", init);

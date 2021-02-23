@@ -25,4 +25,11 @@ export default class Game {
         this.saucers.push(newSaucer)
     }
 
+    update() {
+        this.canvas.getContext("2d").clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.initStarship()
+
+
+    }
 }
