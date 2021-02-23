@@ -5,15 +5,14 @@ export default class Mobile {
         this.y = y;
         this.deltaX = deltaX;
         this.deltaY = deltaY;
-        this.img = this.init_img();
         this.active = true;
     }
 
-    init_img() {
+    init_img(src_img, height, width) {
         const nimg = new Image();
-        nimg.src = DEFINE.SRC_IMG;
-        nimg.height = DEFINE.SIZE;
-        nimg.width = DEFINE.SIZE;
+        nimg.src = src_img;
+        nimg.height = height;
+        nimg.width = width;
 
         return nimg;
     }
