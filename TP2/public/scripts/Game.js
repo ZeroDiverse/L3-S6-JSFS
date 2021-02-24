@@ -1,4 +1,5 @@
 import Saucer from './Saucer'
+import Shoot from './Shoot'
 
 export default class Game {
 
@@ -11,6 +12,8 @@ export default class Game {
         this.starship = starship
         //Init saucers with empty array
         this.saucers = []
+        //Init shoots with empty array
+        this.shoots = []
         //Score beginning is equal to 0
         this.score = 0
     }
@@ -21,11 +24,28 @@ export default class Game {
         this.saucers.push(newSaucer)
     }
 
+    addShoot() {
+        const newShoot = new Shoot(this.starship.x + 20, this.starship.y + 32)
+        // newSaucer.draw(this.canvas.getContext("2d"))
+        this.shoots.push(newShoot)
+    }
+
     update() {
         let that = this;
 
         this.starship.move(this.canvas);
         this.starship.draw(this.context);
+
+        this.saucers.forEach(saucer => {
+            if(saucer.active){
+                this.shoots.forEach(shoot => {
+                    if(shoot.collisionWith(saucer)){
+                        saucer.fall(this.canvas)
+                        this.score += 200;
+                    }
+                })
+            }
+        })
 
         this.saucers = this.saucers.filter(element => element.active);
 
@@ -33,7 +53,12 @@ export default class Game {
             element.update(that.context);
         });
 
-        // console.log(this.saucers);
+        this.shoots = this.shoots.filter(element => element.active);
+
+        this.shoots.forEach((element) => {
+            element.update(that.context);
+        });
+
     }
 
 }

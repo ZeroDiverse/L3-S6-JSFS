@@ -1,4 +1,4 @@
-export const BULLET_IMG_SOURCE = '/assets/images/tir'
+export const BULLET_IMG_SOURCE = '/assets/images/tir.png'
 export const BULLET_WIDTH = 10
 export const BULLET_HEIGHT = 2
 

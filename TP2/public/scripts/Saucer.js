@@ -15,13 +15,21 @@ export default class Saucer extends Mobile {
         return img;
     }
 
-    draw(context){
-        context.drawImage(this.img, this.x, this.y); 
+    draw(context) {
+        context.drawImage(this.img, this.x, this.y);
     }
 
     move() {
-        if(this.x < 0)
+        if (this.x < 0)
             this.active = false;
         super.move();
+    }
+
+    fall(canvas) {
+        if (this.deltaY > canvas.height - this.img.height) {
+            this.active = false
+        }
+        this.deltaX = 0
+        this.deltaY = 3
     }
 }
