@@ -7,6 +7,7 @@ export default class Saucer extends Mobile {
     constructor(x, y) {
         super(x, y, -3, 0)
         this.img = this.init_img();
+        this.shooted = false;
     }
 
     init_img() {
@@ -29,6 +30,7 @@ export default class Saucer extends Mobile {
     }
 
     fall() {
+        this.shooted = true;
         this.deltaX = 0;
         this.deltaY = 3;
     }

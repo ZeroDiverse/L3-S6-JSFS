@@ -16,6 +16,8 @@ export default class Shoot extends Mobile {
     }
 
     collisionWith(saucer) {
+        if(saucer.shooted)
+            return false;
         let x1 = this.x, y1 = this.y;
         let x2 = this.x + BULLET_WIDTH, y2 = this.y + BULLET_HEIGHT;
         let px = saucer.x, py = saucer.y;
