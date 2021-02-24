@@ -38,6 +38,9 @@ export default class Game {
 
         this.saucers.forEach(saucer => {
             if(saucer.active){
+                if(saucer.x < 0) {
+                    this.score -= 300;
+                }
                 this.shoots.forEach(shoot => {
                     if(shoot.collisionWith(saucer)){
                         saucer.fall();
@@ -58,9 +61,6 @@ export default class Game {
         this.shoots.forEach((element) => {
             element.update(that.context);
         });
-
-        // console.log(this.shoots);
-        // console.log(this.saucers);
     }
 
 }
