@@ -40,12 +40,12 @@ export default class Game {
             if(saucer.active){
                 this.shoots.forEach(shoot => {
                     if(shoot.collisionWith(saucer)){
-                        saucer.fall(this.canvas)
+                        saucer.fall();
                         this.score += 200;
                     }
-                })
+                });
             }
-        })
+        });
 
         this.saucers = this.saucers.filter(element => element.active);
 
@@ -59,6 +59,8 @@ export default class Game {
             element.update(that.context);
         });
 
+        // console.log(this.shoots);
+        // console.log(this.saucers);
     }
 
 }

@@ -19,6 +19,9 @@ const flotteSoucoupes = document.getElementById('flotteSoucoupes')
 
 flotteSoucoupes.addEventListener('click', createSaucers)
 
+export const WIDTH = canvas.width;
+export const HEIGHT = canvas.height;
+
 let soucoupeInterval = null
 
 function createOneSaucer() {

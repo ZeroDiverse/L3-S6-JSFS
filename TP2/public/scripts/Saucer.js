@@ -1,6 +1,7 @@
 import Mobile from './Mobile'
 import {SAUCER_HEIGHT, SAUCER_WIDTH} from './Source'
 import SAUCER_IMG_SOURCE from '../assets/images/flyingSaucer-petit.png'
+import {HEIGHT} from './main.js'
 
 export default class Saucer extends Mobile {
     constructor(x, y) {
@@ -21,17 +22,14 @@ export default class Saucer extends Mobile {
     }
 
     move() {
-        if (this.x < 0){
+        if (this.x < 0 || this.y > HEIGHT){
             this.active = false;
         }
         super.move();
     }
 
-    fall(canvas) {
-        if (this.deltaY > canvas.height - this.img.height) {
-            this.active = false
-        }
-        this.deltaX = 0
-        this.deltaY = 3
+    fall() {
+        this.deltaX = 0;
+        this.deltaY = 3;
     }
 }

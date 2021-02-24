@@ -1,6 +1,7 @@
 import Mobile from './Mobile'
 import {BULLET_HEIGHT, BULLET_WIDTH} from './Source'
 import BULLET_IMG_SOURCE from '../assets/images/tir.png'
+import {WIDTH} from './main.js'
 
 export default class Shoot extends Mobile {
     constructor(x, y) {
@@ -9,7 +10,7 @@ export default class Shoot extends Mobile {
     }
 
     move() {
-        if (this.x < 0)
+        if (this.x > WIDTH)
             this.active = false;
         super.move();
     }
