@@ -1,5 +1,6 @@
 import Mobile from './Mobile'
-import {BULLET_HEIGHT, BULLET_IMG_SOURCE, BULLET_WIDTH, SAUCER_HEIGHT, SAUCER_WIDTH} from './Source'
+import {BULLET_HEIGHT, BULLET_WIDTH} from './Source'
+import BULLET_IMG_SOURCE from '../assets/images/tir.png'
 
 export default class Shoot extends Mobile {
     constructor(x, y) {

@@ -1,5 +1,6 @@
 import Mobile from './Mobile'
-import {SAUCER_HEIGHT, SAUCER_IMG_SOURCE, SAUCER_WIDTH} from './Source'
+import {SAUCER_HEIGHT, SAUCER_WIDTH} from './Source'
+import SAUCER_IMG_SOURCE from '../assets/images/flyingSaucer-petit.png'
 
 export default class Saucer extends Mobile {
     constructor(x, y) {
@@ -20,8 +21,9 @@ export default class Saucer extends Mobile {
     }
 
     move() {
-        if (this.x < 0)
+        if (this.x < 0){
             this.active = false;
+        }
         super.move();
     }
 

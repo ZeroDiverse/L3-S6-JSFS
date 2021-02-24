@@ -1,5 +1,6 @@
 import Mobile from './Mobile'
-import {STARSHIP_HEIGHT, STARSHIP_IMG_SOURCE, STARSHIP_WIDTH, MoveState} from './Source'
+import {STARSHIP_HEIGHT, STARSHIP_WIDTH, MoveState} from './Source'
+import STARSHIP_IMG_SOURCE from '../assets/images/vaisseau-ballon-petit.png'
 
 export default class StarShip extends Mobile {
     constructor(x, y) {
