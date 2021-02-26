@@ -8,7 +8,6 @@
     "dev": "npm run webpack && nodemon app.js",
     "webpack": "webpack",
     "webpack:watch": "webpack --watch --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",

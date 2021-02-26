@@ -6,10 +6,9 @@
   "scripts": {
     "start": "npm run webpack && node app.js",
     "dev": "npm-run-all --parallel webpack:watch start:watch",
-    "start:watch": " nodemon app.js",
+    "start:watch": "nodemon app.js",
     "webpack": "webpack",
-    "webpack:watch": "webpack --watch --progress --mode=development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack:watch": "webpack --watch --progress --mode=development"
   },
   "dependencies": {
     "express": "^4.17.1"
