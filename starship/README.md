@@ -22,11 +22,14 @@ ___
 npm install
 npm run dev
 ```
-* Pour production
+* Pour development
 ```
 npm install
-npm start
+npm run dev
 ```
+
+Apres lancer des scripts, on accéde http://localhost:3000/game pour le jeu 
+
 ___
 ## Contributers 🤖
 |Name|
