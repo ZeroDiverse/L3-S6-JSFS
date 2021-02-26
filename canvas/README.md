@@ -17,11 +17,6 @@ ___
 4. [Nodemon](https://nodemon.io/) (Development Server)
 ___
 ***To Get Started Use:***
-* Pour development
-```
-npm install
-npm run dev
-```
 * Pour production
 ```
 npm install
