@@ -11,6 +11,7 @@
     "webpack:watch": "webpack --watch --progress --mode=development"
   },
   "dependencies": {
+    "colors": "^1.4.0",
     "express": "^4.17.1"
   },
   "devDependencies": {

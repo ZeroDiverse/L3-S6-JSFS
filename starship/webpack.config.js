@@ -10,8 +10,9 @@ let config = {
     },
     plugins: [
         new HtmlWebpackPlugin ({
-            inject: true,
-            template: "public/index.html"
+            hash: true,
+            template: './public/index.html',
+            filename: './dist/index.html' //relative to root of the application
         })
     ],
     module: {
