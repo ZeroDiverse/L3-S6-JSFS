@@ -3,34 +3,35 @@ import {SAUCER_HEIGHT, SAUCER_WIDTH} from './Source'
 import SAUCER_IMG_SOURCE from '../assets/images/flyingSaucer-petit.png'
 import {HEIGHT} from './main.js'
 
+/**
+ * Saucer class inherit from mobile - This class represent the enemy of the game
+ */
 export default class Saucer extends Mobile {
     constructor(x, y) {
         super(x, y, -3, 0)
-        this.img = this.init_img();
+        //Init the img of the saucer
+        this.img = this.init_img(SAUCER_IMG_SOURCE, SAUCER_HEIGHT, SAUCER_WIDTH);
+        //Init status of shooted to false at the beginning
         this.shooted = false;
     }
 
-    init_img() {
-        const img = new Image();
-        img.src = SAUCER_IMG_SOURCE;
-        img.height = SAUCER_HEIGHT;
-        img.width = SAUCER_WIDTH;
-        return img;
-    }
-
-    draw(context) {
-        context.drawImage(this.img, this.x, this.y);
-    }
-
+    /**
+     * Recalculate the position x and y of the saucer, and set active status to false if it's out of canvas
+     */
     move() {
-        if (this.x < 0 || this.y > HEIGHT){
-            this.active = false;
+        //If the position of saucer is out of canvas
+        if (this.x < 0 || this.y > HEIGHT) {
+            //Deactivate the saucer
+            return this.active = false;
         }
+        //Or else move
         super.move();
     }
 
+    /**
+     * Action fall of the saucer - Stop moving in x and start moving in y direction
+     */
     fall() {
-        this.shooted = true;
         this.deltaX = 0;
         this.deltaY = 3;
     }
