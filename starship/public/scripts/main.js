@@ -3,29 +3,33 @@ import {STARSHIP_POSITION_X, STARSHIP_WIDTH} from './Source';
 import StarShip from './Starship'
 
 //Get the canvas and context
-const canvas = document.getElementById("stars");
+const canvas = document.querySelector("#stars");
 const context = canvas.getContext("2d");
 
 //Init the starship
 const starship = new StarShip(STARSHIP_POSITION_X, canvas.height / 2 - STARSHIP_WIDTH / 2)
 
 //Init the game
-const theGame = new Game(canvas, canvas.width, canvas.height, starship)
+const theGame = new Game(canvas, canvas.width, canvas.height, starship, 5)
 
 //Get the score text in html
-const scoreText = document.getElementById('score')
+const scoreText = document.querySelector('#score')
 
 //Get add one saucer button in html
-const oneSaucerButton = document.getElementById('nouvelleSoucoupe')
+const oneSaucerButton = document.querySelector('#nouvelleSoucoupe')
 
 //Add the click event listener to the one saucer button
 oneSaucerButton.addEventListener("click", createOneSaucer);
 
 //Get add saucers loop button in html
-const flotteSoucoupes = document.getElementById('flotteSoucoupes')
+const flotteSoucoupes = document.querySelector('#flotteSoucoupes')
 
 //Add the click event listener to the add saucers loop button
 flotteSoucoupes.addEventListener('click', createSaucers)
+
+//Get the life left in html
+const lifeLeftText = document.querySelector("#lifeLeftText")
+const lifeLeft = document.querySelector("#lifeLeft")
 
 export const WIDTH = canvas.width;
 export const HEIGHT = canvas.height;
@@ -43,7 +47,7 @@ function createOneSaucer() {
 /**
  * Create new saucer automatically after 750s
  */
-function createSaucers(){
+function createSaucers() {
     soucoupeInterval = setInterval(() => {
         theGame.addSaucer()
     }, 750)
@@ -52,6 +56,15 @@ function createSaucers(){
 }
 
 function update() {
+
+    if (theGame.lifeLeft > 0) {
+        lifeLeft.innerHTML = theGame.lifeLeft
+    } else {
+        lifeLeftText.innerHTML = `Game over. Your score is ${theGame.score}`
+        canvas.style.animationName = 'none'
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        return;
+    }
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
