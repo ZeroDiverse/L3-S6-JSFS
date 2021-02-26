@@ -9,15 +9,15 @@ cache:
   paths:
     - node_modules/
 
-test_tp1:
+test_canvas:
   script:
-    - cd ./TP1
+    - cd ./canvas
     - npm install
     - npm run webpack
 
 
-test_tp2:
+test_starship:
   script:
-    - cd ./TP2
+    - cd ./starship
     - npm install
     - npm run webpack
