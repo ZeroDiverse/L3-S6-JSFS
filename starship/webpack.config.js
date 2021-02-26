@@ -8,6 +8,12 @@ let config = {
         path: path.resolve(__dirname, "./public"),
         filename: "./dist/bundle.js"
     },
+    plugins: [
+        new HtmlWebpackPlugin ({
+            inject: true,
+            template: "public/index.html"
+        })
+    ],
     module: {
         rules: [{
             test: /\.js$/,
