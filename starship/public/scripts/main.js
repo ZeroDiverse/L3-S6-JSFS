@@ -68,7 +68,7 @@ function update() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    theGame.update()
+    theGame.update();
 
     const raf = window.requestAnimationFrame(update);
 

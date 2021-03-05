@@ -1,5 +1,6 @@
 import Saucer from './Saucer'
 import Shoot from './Shoot'
+import { LifeState, ShootState } from './Source';
 
 /**
  * Class game
@@ -27,7 +28,7 @@ export default class Game {
     }
 
     /**
-     * Add bew saucer to the game
+     * Add new saucer to the game
      */
     addSaucer() {
         //Create a new saucer instance
@@ -58,7 +59,7 @@ export default class Game {
         //For each saucers
         this.saucers.forEach(saucer => {
             //If saucer is active
-            if (saucer.active) {
+            if (saucer.active === LifeState.ACTIVE) {
                 //If saucer position x < 0
                 if (saucer.x < 0) {
                     //Then the score > 1000 then minus 1000
@@ -85,7 +86,9 @@ export default class Game {
                             //Increase the score
                             this.score += 200;
                             //Change saucer's shooted status to true
-                            saucer.shooted = true;
+                            saucer.shooted = ShootState.SHOOTED;
+                            //bullet hits the saucer and explosion
+                            shoot.active = LifeState.DISACTIVE;
                         }
                     }
                 });
@@ -93,7 +96,7 @@ export default class Game {
         });
 
         //Filter all the active saucers
-        this.saucers = this.saucers.filter(element => element.active);
+        this.saucers = this.saucers.filter(element => element.active === LifeState.ACTIVE);
 
         //For each active saucer, update the status
         this.saucers.forEach((element) => {
@@ -101,7 +104,7 @@ export default class Game {
         });
 
         //Filter all the active shoots
-        this.shoots = this.shoots.filter(element => element.active);
+        this.shoots = this.shoots.filter(element => element.active === LifeState.ACTIVE);
 
         //For each active shoot, update the status
         this.shoots.forEach((element) => {

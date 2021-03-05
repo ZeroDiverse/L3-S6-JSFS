@@ -1,5 +1,5 @@
 import Mobile from './Mobile'
-import {BULLET_HEIGHT, BULLET_WIDTH} from './Source'
+import {BULLET_HEIGHT, BULLET_WIDTH, LifeState} from './Source'
 import BULLET_IMG_SOURCE from '../assets/images/tir.png'
 import {WIDTH} from './main.js'
 
@@ -19,7 +19,7 @@ export default class Shoot extends Mobile {
         //If the position x of shoot is out of canvas
         if (this.x > WIDTH)
             //Then deactivate the shoot
-            return this.active = false;
+            this.active = LifeState.DISACTIVE;
         //Else move
         super.move();
     }

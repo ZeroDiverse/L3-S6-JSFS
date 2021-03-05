@@ -1,3 +1,6 @@
+
+import {LifeState} from './Source'
+
 /**
  * Mobile class, this class is used like abstract class for starship, shoot and saucer
  */
@@ -8,7 +11,7 @@ export default class Mobile {
         this.y = y;
         this.deltaX = deltaX;
         this.deltaY = deltaY;
-        this.active = true;
+        this.active = LifeState.ACTIVE;
         this.img = null
     }
 
@@ -73,6 +76,5 @@ export default class Mobile {
         let kx1 = Math.min(x2, px1), ky1 = Math.min(y2, py1);
 
         return kx <= kx1 && ky <= ky1;
-
     }
 }
