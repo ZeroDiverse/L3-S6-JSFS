@@ -15,6 +15,34 @@ const theGame = new Game(canvas, canvas.width, canvas.height, starship, 5)
 //Get the score text in html
 const scoreText = document.querySelector('#score')
 
+//Get the life left in html
+const lifeLeftText = document.querySelector("#lifeLeftText")
+const lifeLeft = document.querySelector("#lifeLeft")
+
+export const WIDTH = canvas.width;
+export const HEIGHT = canvas.height;
+
+let soucoupeInterval = null
+
+/**
+ * Create new saucer automatically after 750s
+ */
+const createSaucers = () => {
+    soucoupeInterval = setInterval(() => {
+        theGame.addSaucer()
+    }, 750)
+    //Focus to the canvas
+    canvas.focus()
+}
+
+/**
+ * Create new saucer
+ */
+const createOneSaucer = () => {
+    theGame.addSaucer()
+    canvas.focus()
+}
+
 //Get add one saucer button in html
 const oneSaucerButton = document.querySelector('#nouvelleSoucoupe')
 
@@ -27,35 +55,7 @@ const flotteSoucoupes = document.querySelector('#flotteSoucoupes')
 //Add the click event listener to the add saucers loop button
 flotteSoucoupes.addEventListener('click', createSaucers)
 
-//Get the life left in html
-const lifeLeftText = document.querySelector("#lifeLeftText")
-const lifeLeft = document.querySelector("#lifeLeft")
-
-export const WIDTH = canvas.width;
-export const HEIGHT = canvas.height;
-
-let soucoupeInterval = null
-
-/**
- * Create new saucer
- */
-function createOneSaucer() {
-    theGame.addSaucer()
-    canvas.focus()
-}
-
-/**
- * Create new saucer automatically after 750s
- */
-function createSaucers() {
-    soucoupeInterval = setInterval(() => {
-        theGame.addSaucer()
-    }, 750)
-    //Focus to the canvas
-    canvas.focus()
-}
-
-function update() {
+const update = () => {
 
     if (theGame.lifeLeft > 0) {
         lifeLeft.innerHTML = theGame.lifeLeft
@@ -79,8 +79,8 @@ function update() {
 // mise en place de l'action des clics sur les boutons + les gestionnaires du clavier pour contrôler le starship
 const init = () => {
 
-    window.addEventListener('keydown', theGame.starship.keyDownActionHandler.bind(theGame.starship));
-    window.addEventListener('keyup', theGame.starship.keyUpActionHandler.bind(theGame.starship));
+    window.addEventListener('keydown', theGame.keyDownActionHandler.bind(theGame));
+    window.addEventListener('keyup', theGame.keyUpActionHandler.bind(theGame));
     window.addEventListener('keypress', (e) => {
         if (e.code === "Space") {
             theGame.addShoot()

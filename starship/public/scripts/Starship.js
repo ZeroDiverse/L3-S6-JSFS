@@ -44,35 +44,4 @@ export default class StarShip extends Mobile {
             this.y = Math.min(box.height - STARSHIP_WIDTH, this.y + this.shiftY);
         }
     }
-
-    keyDownActionHandler(event) {
-        switch (event.key) {
-            case "ArrowUp":
-            case "Up":
-                this.moveUp();
-                break;
-            case "ArrowDown":
-            case "Down":
-                this.moveDown();
-                break;
-            default:
-                return;
-        }
-        event.preventDefault();
-    }
-
-    keyUpActionHandler(event) {
-        switch (event.key) {
-            case "ArrowUp":
-            case "Up":
-            case "ArrowDown":
-            case "Down":
-                this.stopMoving();
-                break;
-            default:
-                return;
-        }
-        event.preventDefault();
-    }
-
 }

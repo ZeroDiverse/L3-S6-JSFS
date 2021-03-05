@@ -51,7 +51,6 @@ export default class Game {
      * Update position of the starship, shoots and saucers
      */
     update() {
-        let that = this;
         //Update the starship position
         this.starship.move(this.canvas);
         this.starship.draw(this.context);
@@ -63,7 +62,7 @@ export default class Game {
 
         //For each active saucer, update the status
         this.saucers.forEach((element) => {
-            element.update(that.context);
+            element.update(this.context);
         });
 
         //Filter all the active shoots
@@ -71,7 +70,7 @@ export default class Game {
 
         //For each active shoot, update the status
         this.shoots.forEach((element) => {
-            element.update(that.context);
+            element.update(this.context);
         });
     }
 
@@ -133,5 +132,35 @@ export default class Game {
                 });
             }
         });
+    }
+
+    keyDownActionHandler(event) {
+        switch (event.key) {
+            case "ArrowUp":
+            case "Up":
+                this.starship.moveUp();
+                break;
+            case "ArrowDown":
+            case "Down":
+                this.starship.moveDown();
+                break;
+            default:
+                return;
+        }
+        event.preventDefault();
+    }
+
+    keyUpActionHandler(event) {
+        switch (event.key) {
+            case "ArrowUp":
+            case "Up":
+            case "ArrowDown":
+            case "Down":
+                this.starship.stopMoving();
+                break;
+            default:
+                return;
+        }
+        event.preventDefault();
     }
 }
