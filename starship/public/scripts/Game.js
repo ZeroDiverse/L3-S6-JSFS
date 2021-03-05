@@ -8,7 +8,7 @@ import { LifeState, ShootState } from './Source';
 export default class Game {
 
     //Constructor
-    constructor(canvas, width, height, starship) {
+    constructor(canvas, width, height, starship, life) {
         this.canvas = canvas
         this.context = this.canvas.getContext("2d");
         //Width of the game - canvas
@@ -23,6 +23,8 @@ export default class Game {
         this.shoots = []
         //Score beginning is equal to 0
         this.score = 0
+        //Number of life left
+        this.lifeLeft = life
     }
 
     /**
@@ -60,8 +62,17 @@ export default class Game {
             if (saucer.active === LifeState.ACTIVE) {
                 //If saucer position x < 0
                 if (saucer.x < 0) {
-                    //Then the score minus 1000
-                    this.score -= 1000;
+                    //Then the score > 1000 then minus 1000
+                    if(this.score > 1000){
+                        this.score -= 1000
+                    }
+                    else{
+                        this.score = 0;
+                    }
+                    //If life > 0 then decrease life by 1
+                    if(this.lifeLeft > 0){
+                        this.lifeLeft -= 1
+                    }
                 }
                 //For each shoots
                 this.shoots.forEach(shoot => {
@@ -70,7 +81,8 @@ export default class Game {
                         //Saucer fall
                         saucer.fall();
                         //If saucer is not shooted
-                        if (saucer.shooted === ShootState.NONE) {
+                        if (!saucer.shooted) {
+                            shoot.active = false
                             //Increase the score
                             this.score += 200;
                             //Change saucer's shooted status to true

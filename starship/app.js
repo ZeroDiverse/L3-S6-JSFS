@@ -13,5 +13,5 @@ app.get('/game', (req, res) => {
 const PORT = 3000
 //Start the server on port 3000
 app.listen(PORT, () => {
-    console.log(`Server start in port ${PORT}`.yellow.underline)
+    console.log(`Server start in port ${PORT}. Please go to end point game at /game`.yellow.underline)
 })

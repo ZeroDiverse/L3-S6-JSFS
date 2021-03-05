@@ -3,6 +3,7 @@
 Développement d'un jeu vidéo simple. Application des nouveautés de EcmaScript6 : classes, modules, etc. Mise en œuvre de Webpack.
 
 ---
+
 La réalisation des exercices préparatoires est indispensable pour pouvoir réaliser ce projet. Vous pouvez d'ailleurs reprendre certains éléments de code réalisés dans ces exercices ou, au moins, vous ne inspirez fortement.
 
 ---

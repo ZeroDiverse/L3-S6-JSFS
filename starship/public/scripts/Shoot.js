@@ -23,4 +23,5 @@ export default class Shoot extends Mobile {
         //Else move
         super.move();
     }
+
 }
