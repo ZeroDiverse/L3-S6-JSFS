@@ -5,10 +5,8 @@
   "main": "Animation.js",
   "scripts": {
     "start": "npm run webpack && node app.js",
-    "dev": "npm run webpack && nodemon app.js",
     "webpack": "webpack",
-    "webpack:watch": "webpack --watch --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack:watch": "webpack --watch --progress"
   },
   "author": "",
   "license": "ISC",
