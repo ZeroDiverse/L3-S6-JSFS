@@ -4,10 +4,9 @@ import Obstacle from './Obstacle'
 const myCanvas = document.getElementById("terrain");
 const context = myCanvas.getContext("2d");
 
-var raf = null;
-var animation = null;
+let animation = null;
 
-function init() {
+const init = () => {
     animation = new AnimationWithObstacle(myCanvas, context, new Obstacle(100,200,10,200));
     
     window.addEventListener('keydown', animation.keyDownActionHandler.bind(animation));
@@ -16,7 +15,7 @@ function init() {
     update();
 }
 
-function update() {
+const update = () => {
     
     context.clearRect(0,0,myCanvas.width,myCanvas.height);
 
@@ -28,7 +27,7 @@ const buttonStopStartBall = document.getElementById("stopStartBall");
 
 buttonStopStartBall.addEventListener("click", animationButton);
 
-function animationButton() {
+const animationButton = () => {
     if(buttonStopStartBall.innerText == "Start") {
         buttonStopStartBall.innerText = "Stop";
         animation.start();
@@ -43,8 +42,11 @@ const buttonAddBall = document.getElementById("addBall");
 
 buttonAddBall.addEventListener('click', addBall)
 
-function addBall() {
+const addBall = () => {
     animation.addBall();
 }
 
-init();
+window.addEventListener("load", init);
+
+//Bundle generated
+console.log('le bundle a été généré');

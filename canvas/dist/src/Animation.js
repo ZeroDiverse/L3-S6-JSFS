@@ -10,10 +10,8 @@ export default class Animation {
     }
 
     moveAndDraw() {
-        var that = this;
-
-        this.balls.forEach(function (e) {
-            if (!that.STOP)
+        this.balls.forEach((e) => {
+            if (!this.STOP)
                 e.move();
             e.draw();
         });
