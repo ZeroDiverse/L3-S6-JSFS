@@ -23,10 +23,6 @@ const update = () => {
     const raf = window.requestAnimationFrame(update);
 }
 
-const buttonStopStartBall = document.getElementById("stopStartBall");
-
-buttonStopStartBall.addEventListener("click", animationButton);
-
 const animationButton = () => {
     if(buttonStopStartBall.innerText == "Start") {
         buttonStopStartBall.innerText = "Stop";
@@ -38,13 +34,17 @@ const animationButton = () => {
     
 }
 
-const buttonAddBall = document.getElementById("addBall");
+const buttonStopStartBall = document.getElementById("stopStartBall");
 
-buttonAddBall.addEventListener('click', addBall)
+buttonStopStartBall.addEventListener("click", animationButton);
+
+const buttonAddBall = document.getElementById("addBall");
 
 const addBall = () => {
     animation.addBall();
 }
+
+buttonAddBall.addEventListener('click', addBall)
 
 window.addEventListener("load", init);
 
