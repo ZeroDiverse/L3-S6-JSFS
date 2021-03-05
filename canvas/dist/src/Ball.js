@@ -1,5 +1,4 @@
 import {DEFINE} from './Define'
-import Obstacle from './Obstacle'
 
 export default class Ball {
     constructor(canvas, context, x, y, deltaX, deltaY) {

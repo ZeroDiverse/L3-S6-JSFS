@@ -7,14 +7,10 @@ export default class AnimationWithObstacle extends Animation {
     }
 
     moveAndDraw() {
-        var that = this;
+        this.balls = this.balls.filter((e) => !e.collisionWith(this.obstacle));
 
-        this.balls = this.balls.filter(function (e) {
-            return !e.collisionWith(that.obstacle);
-        });
-
-        this.balls.forEach(function (e) {
-            if (!that.STOP)
+        this.balls.forEach((e) => {
+            if (!this.STOP)
                 e.move();
             e.draw();
         });
