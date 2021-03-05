@@ -1,6 +1,6 @@
 import Saucer from './Saucer'
 import Shoot from './Shoot'
-import { LifeState, ShootState } from './Source';
+import {LifeState, ShootState} from './Source';
 
 /**
  * Class game
@@ -56,44 +56,7 @@ export default class Game {
         this.starship.move(this.canvas);
         this.starship.draw(this.context);
 
-        //For each saucers
-        this.saucers.forEach(saucer => {
-            //If saucer is active
-            if (saucer.active === LifeState.ACTIVE) {
-                //If saucer position x < 0
-                if (saucer.x < 0) {
-                    //Then the score > 1000 then minus 1000
-                    if(this.score > 1000){
-                        this.score -= 1000
-                    }
-                    else{
-                        this.score = 0;
-                    }
-                    //If life > 0 then decrease life by 1
-                    if(this.lifeLeft > 0){
-                        this.lifeLeft -= 1
-                    }
-                }
-                //For each shoots
-                this.shoots.forEach(shoot => {
-                    //Check the shoot collision with saucer
-                    if (shoot.collisionWith(saucer)) {
-                        //Saucer fall
-                        saucer.fall();
-                        //If saucer is not shooted
-                        if (!saucer.shooted) {
-                            shoot.active = false
-                            //Increase the score
-                            this.score += 200;
-                            //Change saucer's shooted status to true
-                            saucer.shooted = ShootState.SHOOTED;
-                            //bullet hits the saucer and explosion
-                            shoot.active = LifeState.DISACTIVE;
-                        }
-                    }
-                });
-            }
-        });
+        this.updateActionForShootAndSaucer()
 
         //Filter all the active saucers
         this.saucers = this.saucers.filter(element => element.active === LifeState.ACTIVE);
@@ -112,4 +75,63 @@ export default class Game {
         });
     }
 
+    /**
+     * This method controls the action of saucer when they passed the line
+     * @param saucer
+     */
+    actionWhenSaucerPassedTheLine(saucer) {
+        //If saucer position x < 0
+        if (saucer.x < 0) {
+            //Then the score > 1000 then minus 1000
+            if (this.score > 1000) {
+                this.score -= 1000
+            } else {
+                this.score = 0;
+            }
+            //If life > 0 then decrease life by 1
+            if (this.lifeLeft > 0) {
+                this.lifeLeft -= 1
+            }
+        }
+    }
+
+    /**
+     * check if shoot collied with saucers and action
+     * @param shoot
+     * @param saucer
+     */
+    checkWhenShootCollidedWithSaucer(shoot, saucer) {
+        //Check the shoot collision with saucer
+        if (shoot.collisionWith(saucer)) {
+            //Saucer fall
+            saucer.fall();
+            //If saucer is not shooted
+            if (!saucer.shooted) {
+                shoot.active = false
+                //Increase the score
+                this.score += 200;
+                //Change saucer's shooted status to true
+                saucer.shooted = ShootState.SHOOTED;
+                //bullet hits the saucer and explosion
+                shoot.active = LifeState.DISACTIVE;
+            }
+        }
+    }
+
+    /**
+     * This function update checking to update the status of saucers and shoots
+     */
+    updateActionForShootAndSaucer() {
+        //For each saucers
+        this.saucers.forEach(saucer => {
+            //If saucer is active
+            if (saucer.active === LifeState.ACTIVE) {
+                this.actionWhenSaucerPassedTheLine(saucer)
+                //For each shoots
+                this.shoots.forEach(shoot => {
+                    this.checkWhenShootCollidedWithSaucer(shoot, saucer)
+                });
+            }
+        });
+    }
 }

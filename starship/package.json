@@ -1,5 +1,5 @@
 {
-  "name": "TP2",
+  "name": "starship",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,9 @@
     "dev": "npm-run-all --parallel webpack:watch start:watch",
     "start:watch": "nodemon app.js",
     "webpack": "webpack",
-    "webpack:watch": "webpack --watch --progress --mode=development"
+    "webpack:watch": "webpack --watch --progress --mode=development",
+    "build": "webpack",
+    "webpack:dev-server": "webpack serve"
   },
   "dependencies": {
     "colors": "^1.4.0",
