@@ -1,6 +1,9 @@
 import Game from './Game'
 import {STARSHIP_POSITION_X, STARSHIP_WIDTH} from './Source';
 import StarShip from './Starship'
+import { io } from "socket.io-client";
+
+const socket = io();
 
 //Get the canvas and context
 const canvas = document.querySelector("#stars");

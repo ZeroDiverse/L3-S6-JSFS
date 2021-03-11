@@ -29,8 +29,12 @@ npm install
 npm run dev
 ```
 
-Apres lancer des scripts, on accéde http://localhost:3000/game pour le jeu 
+Apres lancer des scripts, ouvrir http://localhost:3000/game pour le jeu 
 
+## Added features
+- Si points < 1000, le score devient 0
+- Le css et commentaire
+- Découpe le code
 ___
 ## Contributers 🤖
 |Name|

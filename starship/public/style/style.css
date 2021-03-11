@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
 
+*{
+    box-sizing: border-box;
+}
+
 html {
     height: 100%;
     width: 100%;
@@ -56,26 +60,23 @@ div#control {
     flex-direction: column;
     width: max-content;
     padding: 1rem;
+    background-color: black;
 }
 
-button {
-    font-size: 40px;
-    margin: 1rem 0;
-    font-family: 'Dosis', sans-serif;
-}
 
 span#score {
-    width: 100px;
+    width: 8rem;
     font-size: 30px;
     text-align: right;
     background-color: white;
-    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .description-wrapper {
     display: flex;
     justify-content: space-between;
-    width: 1000px;
     margin: auto;
 }
 
@@ -84,6 +85,7 @@ span#score {
     border: 1px dotted #ffffff;
     padding: 1rem;
     margin: 10px;
+    background-color: black;
 }
 
 ul {
@@ -93,4 +95,26 @@ ul {
 
 ul li {
     margin: 1rem 0;
+}
+
+button, span {
+    border-radius: 1.5rem;
+    border: none;
+    height: 3rem;
+}
+
+button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 1rem 0;
+    font-family: 'Dosis', sans-serif;
+}
+
+button span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.25rem;
 }
