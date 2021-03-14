@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run webpack && node app.js",
+    "start": "node ./bin/www",
     "dev": "npm-run-all --parallel webpack:watch start:watch",
-    "start:watch": "nodemon app.js",
+    "start:watch": "nodemon ./bin/www",
     "webpack": "webpack",
     "webpack:watch": "webpack --watch --progress --mode=development",
     "build": "webpack",
@@ -16,7 +16,8 @@
     "colors": "^1.4.0",
     "express": "^4.17.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "socket.io": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.17",

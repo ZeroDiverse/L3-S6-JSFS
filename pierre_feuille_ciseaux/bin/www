@@ -1,0 +1,14 @@
+const server = require('../app.js')
+const io = require('socket.io')(server);
+const ioController = require('../controllers/ioController')(io)
+
+const PORT = process.env.PORT || 3000
+
+io.on('connection', socket => {
+    ioController.registerSocket(socket)
+});
+
+//Start the server on port 3000
+server.listen(PORT, () => {
+    console.log(`Server start in port ${PORT}`.yellow.underline)
+})

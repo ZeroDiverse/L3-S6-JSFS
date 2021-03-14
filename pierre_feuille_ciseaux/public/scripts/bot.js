@@ -10,7 +10,6 @@ const matchResult = document.querySelector(".matchResult");
 const restart = document.querySelector("#restart");
 
 //score
-const scoreContainer = document.querySelector("#score");
 const scoreDisplayed = document.querySelector(".actual-score");
 
 //Circles inside game section
@@ -20,70 +19,27 @@ const gameCircles = document.querySelectorAll("#game .circle");
 const playerPicked = document.querySelector(".picked-container figure");
 const playerPickedImg = document.querySelector(".picked-container figure img");
 
-//Circle picked by opponent
-const opponentPicked = document.querySelector(".house-picked-container figure");
-const opponentPickedImg = document.querySelector(".house-picked-container figure img");
+//Circle picked by House
+const housePicked = document.querySelector(".house-picked-container figure");
+const housePickedImg = document.querySelector(".house-picked-container figure img");
 
 
 //variables for the game
 const choices = ["paper", "scissors", "rock"];
 let picked = "";
+let houseChoice = "";
 let score = 0;
 
-const rulesButton = document.querySelector("#rules-btn");
-const rulesOverview = document.querySelector("#rules-overview");
-const exitFromRules = document.querySelector(".exitFromRules");
-
-//Wait status
-const waitStatusWrapper = document.querySelector('.wait-status-wrapper');
-const waitStatusText = document.querySelector('.wait-status-text');
-
-rulesButton.addEventListener("click", function (e) {
-    e.stopPropagation()
-    rulesOverview.style.display = "flex";
-    rulesOverview.style.background = "rgba(0,0,0, 0.50)"
-    exitFromRules.addEventListener("click", function () {
-        e.stopPropagation()
-        rulesOverview.style.display = "none";
-    })
-})
-
-/**
- * Add restart event to restart button
- */
-restart.addEventListener("click", function () {
-    restartGame();
-});
-
-/**
- * This helper function will display the result for both user
- * @param result the result to be displayed
- */
-function displayResult(result) {
-    if (result === 1) {
-        playerPicked.classList.add("winner");
-        result = "You Win"
-    } else if (result === -1) {
-        opponentPicked.classList.add("winner");
-        result = "You Lose"
-    } else {
-        result = "Fair"
-    }
-
-    getResult(result)
-}
 
 //store and modify depending on the picked one
-function choiceModifier(subject, subjectImg, chose) {
+function choiceModifier(subject, subjectImg, choosed) {
     //This sill set up the class of the subject to 0 and add circle and the value picked
     subject.classList = "";
     subject.classList.add("circle");
-    subject.classList.add(chose);
+    subject.classList.add(choosed);
 
     //This will set the image
-    subjectImg.src = "images/icon-" + chose + ".svg";
-    waitStatusText.innerHTML = ``
-
+    subjectImg.src = "/images/icon-" + choosed + ".svg";
 }
 
 //This change only the display from the first choice page to the win or lose one
@@ -92,6 +48,30 @@ function callNewPage(currentPage, NextPage) {
     NextPage.style.display = "grid";
 }
 
+//Generate random house choice
+function housePick() {
+    houseChoice = choices[Math.floor(Math.random() * 3)];
+    choiceModifier(housePicked, housePickedImg, houseChoice);
+}
+
+//Give the result of the game
+function gameCalculator(playerChoice, computerChoice) {
+    let result;
+    if (playerChoice === computerChoice) { //fair always
+        result = "Fair";
+    } else if (  //All win possibilities
+        (playerChoice === choices[0] && computerChoice === choices[2]) ||
+        (playerChoice === choices[1] && computerChoice === choices[0]) ||
+        (playerChoice === choices[2] && computerChoice === choices[1])
+    ) {
+        result = "You Win";
+        playerPicked.classList.add("winner");
+    } else { //if it is not fair and not win is Lose!
+        result = "You Lose";
+        housePicked.classList.add("winner");
+    }
+    getResult(result);
+}
 
 //Change the text of the result and give display
 function getResult(result) {
@@ -101,7 +81,7 @@ function getResult(result) {
         score += 1;
         scoreDisplayed.textContent = score;
     } else if (result === "You Lose") {
-        //score -= 1;
+        score -= 1;
         if (score < 0) {
             score = 0;
         }
@@ -112,13 +92,12 @@ function getResult(result) {
 //Restart the game
 function restartGame() {
     picked = "";
+    houseChoice = "";
     winOrLose.style.display = "none";
-    //scoreDisplayed.textContent = "";
-    opponentPickedImg.src = "";
     game.style.display = "flex";
-    matchResult.textContent = "";
-    socket.emit('restart')
+
 }
+
 
 //This is the full game
 for (let i = 0; i < gameCircles.length; i++) {
@@ -138,25 +117,15 @@ for (let i = 0; i < gameCircles.length; i++) {
                     break;
             }
         }
-        socket.emit('player-pick', {
-            picked
-        })
         choiceModifier(playerPicked, playerPickedImg, picked);
         callNewPage(game, winOrLose);
+        housePick();
+        gameCalculator(picked, houseChoice);
     })
 }
 
-function showGame() {
-    game.classList.remove("none")
-    scoreContainer.classList.remove("none")
-    rulesButton.classList.remove("none")
-    waitStatusWrapper.classList.remove("out-of-bound")
-}
 
+restart.addEventListener("click", function () {
+    restartGame();
+});
 
-function hideGame() {
-    game.classList.add("none")
-    scoreContainer.classList.add("none")
-    rulesButton.classList.add("none")
-    waitStatusWrapper.classList.add("out-of-bound")
-}

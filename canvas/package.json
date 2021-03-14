@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npm run webpack && node app.js",
     "webpack": "webpack",
+    "build": "webpack",
     "webpack:watch": "webpack --watch --progress"
   },
   "author": "",
