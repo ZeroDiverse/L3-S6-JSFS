@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <!-- Link of FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+          integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+
+    <title>Rock, Paper, Scissors</title>
+
+</head>
+<body>
+<main>
+    <!-- Section Score -->
+    <section id="score">
+        <div class="score-section-container">
+            <figure class="logo-container">
+                <img src="/images/logo.svg" alt="">
+            </figure>
+
+            <div class="actual-score-container">
+                <p class="score-title">Score</p>
+                <h1 class="actual-score">0</h1>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="rules">
+        <button id="rules-btn">Rules</button>
+    </div>
+
+    <!-- Section Game -->
+    <section id="game">
+        <div class="paper-scissor-container">
+            <button class="circle paper">
+                <img src="/images/icon-paper.svg" alt="">
+            </button>
+
+            <button class="circle scissors">
+                <img src="/images/icon-scissors.svg" alt="">
+            </button>
+        </div>
+
+
+        <button class="circle rock ">
+            <img src="/images/icon-rock.svg" alt="">
+        </button>
+    </section>
+
+    <section id="winOrLose">
+        <div class="picked-container">
+            <p>You Picked</p>
+            <figure class="bkg-layer">
+                <img src="" alt="">
+            </figure>
+        </div>
+
+        <!-- Here's the win or lose div -->
+        <div class="winnerOrLoser">
+            <h1 class="matchResult">You Win</h1>
+            <button id="restart" class="playAgain">Play Again</button>
+        </div>
+
+
+        <div class="house-picked-container">
+            <p>The House Picked</p>
+            <figure class=" bkg-layer">
+                <img src="" alt="">
+            </figure>
+        </div>
+
+    </section>
+
+
+    <section id="rules-overview">
+        <div class="card">
+            <p class="rules-title">Rules</p>
+            <button class="exitFromRules"><i class="fas fa-times fa-lg"></i></button>
+            <figure class="rules-description">
+                <img src="/images/image-rules.svg" alt="">
+            </figure>
+
+        </div>
+    </section>
+
+
+</main>
+<script src="/scripts/bot.js"></script>
+</body>
+</html>

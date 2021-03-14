@@ -2,10 +2,10 @@ const webpack = require("webpack");
 const path = require("path");
 
 let config = {
-    entry: "./dist/src/game.js",
+    entry: "./public/src/game.js",
     output: {
-      path: path.resolve(__dirname, "./dist"),
-      filename: "./public/bundle.js"
+      path: path.resolve(__dirname, "./public"),
+      filename: "./dist/bundle.js"
     },
     module: {
         rules: [{
@@ -15,5 +15,5 @@ let config = {
         }]
       }
   }
-  
+
   module.exports = config;
