@@ -8,61 +8,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PRODUCTION = false;
 
 module.exports = {
-    entry: "./src/scripts/main.js",
+    entry: path.resolve(__dirname, 'src/scripts/main.js'),
+
     output: {
-        path: path.resolve(__dirname, "./src"),
-        filename: "./dist/bundle.js"
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'scripts/bundle.js'
     },
-    mode: (PRODUCTION ? 'production' : 'development'),
-    devtool: (PRODUCTION ? undefined : 'eval-source-map'),
+
+    mode :  (PRODUCTION ? 'production' : 'development'),
+    devtool : (PRODUCTION ? undefined : 'eval-source-map'),
+
     devServer: {
         static: {
             publicPath: path.resolve(__dirname, 'dist'),
-            watch: true
+            watch : true
         },
-        host: 'localhost',
-        port: 9000,
-        open: 'chrome'
+        host : 'localhost',
+        port : 9000,
+        open : 'firefox'
     },
-    plugins: [
-        new webpack.ProgressPlugin(),
-        new HtmlWebpackPlugin({
-            hash: true,
-            template: './src/index.html',
-            filename: './index.html' //relative to root of the application
-        }),
-        new CopyPlugin({
-            patterns: [
-                //{    // décommenter ce bloc pour copier les fichiers de src/html dans dist/html
-                //  context: path.resolve(__dirname, "src", "html"),
-                // from: "**/*.html",
-                // globOptions: { },
-                //   noErrorOnMissing: true,
-                // to:  'html'
-                //},
-                // décommenter ce bloc pour copier les fichiers de src/images dans dist/images
-                {
-                    from: 'src/images/*',
-                    to: 'images/[name].[ext]',
-                    noErrorOnMissing: true,
-                },
 
-
-                {
-                    from: 'src/style/*',
-                    to: 'style/[name].[ext]',
-                    noErrorOnMissing: true,
-                },
-            ]
-        }),
-    ],
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: "babel-loader"
-            },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
@@ -73,8 +40,8 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[name].[ext]',
-                            outputPath: 'images'
+                            name : '[name].[ext]',
+                            outputPath : 'images'
                         }
                     }
                 ]
@@ -88,12 +55,47 @@ module.exports = {
             }
         ]
     },
+
+    plugins: [
+        new webpack.ProgressPlugin(),
+        new HtmlWebpackPlugin({
+            template: "./src/index.html",
+            filename: "./index.html",
+            hash: true,
+        }),
+        new CopyPlugin({
+            patterns: [
+                //{    // décommenter ce bloc pour copier les fichiers de src/html dans dist/html
+                //  context: path.resolve(__dirname, "src", "html"),
+                // from: "**/*.html",
+                // globOptions: { },
+                //   noErrorOnMissing: true,
+                // to:  'html'
+                //},
+                /*   // décommenter ce bloc pour copier les fichiers de src/images dans dist/images
+                 {
+                   from: 'src/images/*',
+                   to:  'images/[name].[ext]',
+               noErrorOnMissing: true,
+                 },
+                */
+
+                {
+                    from: 'src/style/*',
+                    to:  'style/[name].[ext]',
+                    noErrorOnMissing: true,
+                },
+            ]
+        }),
+    ],
+
+
     /*
-externals : {
-  react: 'React',
-  react-dom: 'ReactDom',
-},
-*/
+    externals : {
+      react: 'React',
+      react-dom: 'ReactDom',
+    },
+    */
 
     optimization: {
 
