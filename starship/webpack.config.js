@@ -72,13 +72,13 @@ module.exports = {
                 //   noErrorOnMissing: true,
                 // to:  'html'
                 //},
-                /*   // décommenter ce bloc pour copier les fichiers de src/images dans dist/images
+                   // décommenter ce bloc pour copier les fichiers de src/images dans dist/images
                  {
                    from: 'src/images/*',
                    to:  'images/[name].[ext]',
                noErrorOnMissing: true,
                  },
-                */
+
 
                 {
                     from: 'src/style/*',
