@@ -12,21 +12,20 @@ L'objectif est de réaliser un jeu vidéo simple dans lequel le joueur contrôle
 
 ___
 # Technologies Used 💻
-1. [Node js](https://nodejs.org) (Express Framework)
+1. [Node js](https://nodejs.org) (Nodejs runtime)
 2. [Webpack](https://webpack.js.org/) (Webpack)
 3. [Babel](https://babeljs.io/) (Babel)
-4. [Nodemon](https://nodemon.io/) (Development Server)
 ___
 ***To Get Started Use:***
 * Pour development
 ```
 npm install
-npm run dev
+npm run build
 ```
 * Pour development
 ```
 npm install
-npm run dev
+npm run webpack:dev-server
 ```
 
 Apres lancer des scripts, ouvrir http://localhost:3000/game pour le jeu 

@@ -8,19 +8,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PRODUCTION = false;
 
 module.exports = {
-    entry: "./public/scripts/main.js",
+    entry: "./src/scripts/main.js",
     output: {
-        path: path.resolve(__dirname, "./public"),
+        path: path.resolve(__dirname, "./src"),
         filename: "./dist/bundle.js"
     },
     mode: (PRODUCTION ? 'production' : 'development'),
     devtool: (PRODUCTION ? undefined : 'eval-source-map'),
+    devServer: {
+        static: {
+            publicPath: path.resolve(__dirname, 'dist'),
+            watch: true
+        },
+        host: 'localhost',
+        port: 9000,
+        open: 'chrome'
+    },
     plugins: [
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({
             hash: true,
-            template: './public/index.html',
-            filename: './dist/index.html' //relative to root of the application
+            template: './src/index.html',
+            filename: './index.html' //relative to root of the application
         }),
         new CopyPlugin({
             patterns: [
@@ -31,31 +40,22 @@ module.exports = {
                 //   noErrorOnMissing: true,
                 // to:  'html'
                 //},
-                /*   // décommenter ce bloc pour copier les fichiers de src/images dans dist/images
-                 {
-                   from: 'src/images/*',
-                   to:  'images/[name].[ext]',
-               noErrorOnMissing: true,
-                 },
-                */
+                // décommenter ce bloc pour copier les fichiers de src/images dans dist/images
+                {
+                    from: 'src/images/*',
+                    to: 'images/[name].[ext]',
+                    noErrorOnMissing: true,
+                },
+
 
                 {
                     from: 'src/style/*',
-                    to:  'style/[name].[ext]',
+                    to: 'style/[name].[ext]',
                     noErrorOnMissing: true,
                 },
             ]
         }),
     ],
-    devServer: {
-        static: {
-            publicPath: path.resolve(__dirname, 'dist'),
-            watch: true
-        },
-        host: 'localhost',
-        port: 9000,
-        open: 'firefox'
-    },
     module: {
         rules: [
             {
@@ -68,15 +68,16 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpg|gif)/i,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-                            outputPath: '/dist/assets/images',
-                        },
-                    },
-                ],
+                            name: '[name].[ext]',
+                            outputPath: 'images'
+                        }
+                    }
+                ]
             },
             {
                 test: /\.m?js$/,

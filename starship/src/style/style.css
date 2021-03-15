@@ -78,6 +78,7 @@ span#score {
     display: flex;
     justify-content: space-between;
     margin: auto;
+    max-width: 1000px;
 }
 
 .description-wrapper .game-rules {
