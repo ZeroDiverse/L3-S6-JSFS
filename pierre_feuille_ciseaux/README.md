@@ -17,13 +17,13 @@ ___
 * Pour production
 ```
 npm install
-npm start
+npm run build
 ```
 
 * Pour development
 ```
 npm install
-npm run dev
+npm run webpack:dev-server
 ```
 
 ## Added Feature 🥰
