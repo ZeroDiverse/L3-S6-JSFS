@@ -1,5 +1,6 @@
 import Saucer from './Saucer'
 import Shoot from './Shoot'
+import Explosion from './Explosion'
 import {LifeState, ShootState} from './Source';
 
 /**
@@ -20,6 +21,8 @@ export default class Game {
         //Init saucers with empty array
         this.saucers = []
         //Init shoots with empty array
+        this.explosions = []
+        //Init explosions with empty array
         this.shoots = []
         //Score beginning is equal to 0
         this.score = 0
@@ -48,6 +51,16 @@ export default class Game {
     }
 
     /**
+     * Add explosion to the game
+     */
+    addExplosion(x, y) {
+        //Create new Explosion instance
+        const newExplosion = new Explosion(x, y)
+        //Add the new explosion to explosions array for tracking
+        this.explosions.push(newExplosion)
+    }
+
+    /**
      * Update position of the starship, shoots and saucers
      */
     update() {
@@ -70,6 +83,14 @@ export default class Game {
 
         //For each active shoot, update the status
         this.shoots.forEach((element) => {
+            element.update(this.context);
+        });
+
+        //Filter all the active shoots
+        this.explosions = this.explosions.filter(element => element.active === LifeState.ACTIVE);
+
+        //For each active shoot, update the status
+        this.explosions.forEach((element) => {
             element.update(this.context);
         });
     }
@@ -106,6 +127,8 @@ export default class Game {
             saucer.fall();
             //If saucer is not shooted
             if (!saucer.shooted) {
+                this.addExplosion(saucer.x, saucer.y)
+                this.addExplosion(saucer.x, saucer.y)
                 shoot.active = false
                 //Increase the score
                 this.score += 200;
@@ -128,7 +151,7 @@ export default class Game {
                 this.actionWhenSaucerPassedTheLine(saucer)
                 //For each shoots
                 this.shoots.forEach(shoot => {
-                    this.checkWhenShootCollidedWithSaucer(shoot, saucer)
+                    this.checkWhenShootCollidedWithSaucer(shoot, saucer)                    
                 });
             }
         });

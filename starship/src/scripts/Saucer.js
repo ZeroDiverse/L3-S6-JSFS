@@ -1,6 +1,7 @@
 import Mobile from './Mobile'
 import {SAUCER_HEIGHT, SAUCER_WIDTH, LifeState, ShootState} from './Source'
 import SAUCER_IMG_SOURCE from '../assets/images/flyingSaucer-petit.png'
+import SAUCER_DESTROYED_IMG_SOURCE from '../assets/images/flyingSaucer-petit_destroyed.png'
 import {HEIGHT} from './main.js'
 
 /**
@@ -30,9 +31,11 @@ export default class Saucer extends Mobile {
 
     /**
      * Action fall of the saucer - Stop moving in x and start moving in y direction
+     * The saucer is falling down
      */
     fall() {
         this.deltaX = 0;
         this.deltaY = 3;
+        this.img = this.init_img(SAUCER_DESTROYED_IMG_SOURCE, SAUCER_HEIGHT, SAUCER_WIDTH);
     }
 }
