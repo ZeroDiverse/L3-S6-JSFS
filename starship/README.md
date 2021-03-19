@@ -28,12 +28,15 @@ npm install
 npm run webpack:dev-server
 ```
 
-Apres lancer des scripts, ouvrir http://localhost:3000/game pour le jeu 
+Si vous utilisez Firefox, http://localhost:9000/ sera lancé automatiquement dans votre Navigateur. 
+<br>Sinon, vous pouvez votre navigateur préféré et accéder http://localhost:9000/
 
 ## Added features
 - Si points < 1000, le score devient 0
 - Le css et commentaire
 - Découpe le code
+- The saucer will fall down if it get shooted
+- Add the Explosion animation (class Explosion)
 ___
 ## Contributers 🤖
 |Name|
