@@ -35,6 +35,7 @@ npm run webpack:dev-server
 ## TODO 🥺
 - [ ] Make room and make user enter user's name
 - [ ] Use webpack and babel
+- [ ] Bet system?
 ___
 ## Contributers 🤖
 |Name|
