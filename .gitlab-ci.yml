@@ -13,16 +13,16 @@ test_canvas:
   script:
     - cd ./canvas
     - npm install
-    - npm build
+    - npm run build
 
 test_starship:
   script:
     - cd ./starship
     - npm install
-    - npm build
+    - npm run build
 
 test_pfc:
   script:
     - cd ./pierre_feuille_ciseaux
     - npm install
-    - npm build
+    - npm run build
