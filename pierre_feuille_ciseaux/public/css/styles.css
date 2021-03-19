@@ -548,3 +548,22 @@ main{
 .introduction-title{
     text-align: center;
 }
+
+.member-name{
+    color: orange;
+}
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #3285a8;  
+  text-align: center;
+  padding: 10px;
+}
+
+.footer-text{
+    color: white;
+    letter-spacing: 1px;
+}
