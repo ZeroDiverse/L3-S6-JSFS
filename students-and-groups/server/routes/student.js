@@ -3,13 +3,13 @@ const {getAllStudents, deleteStudentById, createNewStudent, updateStudent} = req
 const router = require('express').Router()
 
 
-router.get('/students', getAllStudents)
+router.get('/', getAllStudents)
 
-router.post('/students', verifyStudentData, createNewStudent)
+router.post('/', verifyStudentData, createNewStudent)
 
-router.patch('/students', verifyStudentData, updateStudent)
+router.patch('/', verifyStudentData, updateStudent)
 
-router.delete('/students/:id', deleteStudentById)
+router.delete('/:id', deleteStudentById)
 
 
 module.exports = router

@@ -23,6 +23,11 @@ module.exports.createNewStudent = async (req, res) => {
     const verifiedLastname = lastname.toUpperCase()
     const verifiedFirstname = firstname[0].toUpperCase() + firstname.slice(1, firstname.length - 1)
     try {
+        if(await Student.findOne({studentNumber})){
+            return res.status(502).json({
+                message: "Cannot created student, student number duplicated"
+            })
+        }
         return res.status(201).json(await Student.create({
             lastname: verifiedLastname,
             firstname: verifiedFirstname,

@@ -1,4 +1,4 @@
-module.exports.verifyStudentData = (req, res) => {
+module.exports.verifyStudentData = (req, res, next) => {
     const {firstname, lastname, studentNumber} = req.body
 
     if (!lastname) {
@@ -10,4 +10,5 @@ module.exports.verifyStudentData = (req, res) => {
     if (!firstname) {
         return res.status(400).json({err: 'Missing firstname'})
     }
+    next()
 }
