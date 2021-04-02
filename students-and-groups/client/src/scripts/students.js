@@ -4,8 +4,10 @@ const createStudentForm = document.querySelector('.create-student')
 const firstnameInput = document.querySelector('#firstname')
 const lastnameInput = document.querySelector('#lastname')
 const studentNumberInput = document.querySelector('#studentNumber')
-
+const message = document.querySelector('#message')
+const submitButton = document.querySelector('#submit-btn')
 let studentGlobal = null;
+const messageTimeout = 4000;
 
 const createNewStudentRow = async (e) => {
     e.preventDefault()
@@ -18,8 +20,19 @@ const createNewStudentRow = async (e) => {
         const createdStudent = await response.json()
         const tr = createTableRow(createdStudent)
         tableBody.appendChild(tr)
+        message.innerHTML = `Student ${createdStudent.lastname} ${createdStudent.firstname}, student number: ${createdStudent.studentNumber} created!`
+        setTimeout(() => {
+            message.innerHTML = ''
+        }, messageTimeout)
         resetInput()
-    } else {
+    }
+    else if(response.status === 502){
+        message.innerHTML = `Student number must be unique, can\' create the student`
+        setTimeout(() => {
+            message.innerHTML = ''
+        }, messageTimeout)
+    }
+    else {
         console.log(await response.json())
     }
 }
@@ -69,6 +82,10 @@ function createTableRow(student) {
             tableBody.childNodes.forEach(child => {
                 if (child.id === student._id) {
                     tableBody.removeChild(child)
+                    message.innerHTML = `Student number ${student.studentNumber} deleted!`
+                    setTimeout(() => {
+                        message.innerHTML = ''
+                    }, messageTimeout)
                 }
             })
         }
@@ -112,7 +129,11 @@ const updateStudentSubmitAction = async (e) => {
         studentNumber: studentNumberInput.value
     })
     if (response.status === 200) {
-        const updatedStudent= await response.json()
+        const updatedStudent = await response.json()
+        message.innerHTML = `Updated student: ${updatedStudent.lastname} ${updatedStudent.firstname}, student number: ${updatedStudent.studentNumber}!`
+        setTimeout(() => {
+            message.innerHTML = ''
+        }, messageTimeout)
         updateTableRow(updatedStudent)
         resetInput()
     } else {
@@ -121,9 +142,11 @@ const updateStudentSubmitAction = async (e) => {
 }
 
 const updateStudentForm = (student) => {
+    submitButton.textContent = 'Update'
     firstnameInput.value = student.firstname
     lastnameInput.value = student.lastname
     studentNumberInput.value = student.studentNumber
+    studentNumberInput.disabled = true
     studentGlobal = student
     createStudentForm.removeEventListener('submit', createNewStudentRow, true)
     createStudentForm.addEventListener('submit', updateStudentSubmitAction, true)

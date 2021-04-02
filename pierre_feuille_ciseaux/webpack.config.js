@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PRODUCTION = false;
 
 module.exports = {
-    entry: "./public/scripts/main.js",
+    entry: "./public/scripts/index.js",
     output: {
         path: path.resolve(__dirname, "./public"),
         filename: "./dist/bundle.js"
