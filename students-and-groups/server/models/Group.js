@@ -1,11 +1,14 @@
 const mongoose = require('mongoose')
-const {StudentSchema} = require("./Student");
 
 const GroupSchema = new mongoose.Schema({
-    student: StudentSchema,
+    student: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
     group: {
         type: Number,
-        enum: [1, 2, 3, 4, 5, 6]
+        required: true
+        //enum: [1, 2, 3, 4, 5, 6]
     }
 })
 

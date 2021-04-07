@@ -1,13 +1,17 @@
 const router = require('express').Router()
-const {getStudentsWithoutGroupId, unAssignStudentFromGroup, getStudentsByGroupId, assignStudentToGroup} = require("../controllers/group");
+const {getStudentsWithoutGroupId, unAssignStudentFromGroup, getStudentsByGroupId, assignStudentToGroup, getAllGroups, deleteAllGroups} = require("../controllers/group");
 
 
-router.get('/', getStudentsWithoutGroupId)
+router.get('/', getAllGroups)
+
+router.get('/students', getStudentsWithoutGroupId)
 
 router.get('/:groupNumber/students', getStudentsByGroupId)
 
-router.get('/:groupNumber/students/:studentId', assignStudentToGroup)
+router.post('/:groupNumber/students/:studentId', assignStudentToGroup)
 
-router.patch('/:groupId', unAssignStudentFromGroup)
+router.patch('/students/:studentId', unAssignStudentFromGroup)
+
+router.delete('/', deleteAllGroups)
 
 module.exports = router

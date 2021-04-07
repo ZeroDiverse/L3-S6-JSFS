@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bulma/css/bulma.min.css";
+
+.navbar-item{
+  img{
+    width: 110px !important;
+    height: auto !important;
+  }
+}

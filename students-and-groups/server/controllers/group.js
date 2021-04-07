@@ -2,17 +2,36 @@ const {StudentModel} = require('../models/Student')
 const Student = StudentModel
 const Group = require('../models/Group')
 
+module.exports.getAllGroups = async (req, res) => {
+    try {
+        const groups = await Group.find({})
+        return res.status(200).json(groups)
+    } catch (e) {
+        console.log(e)
+        return res.status(500).json(e)
+    }
+}
+
+module.exports.deleteAllGroups = async (req, res) => {
+    try {
+        const groups = await Group.deleteMany({})
+        return res.status(200).json(groups)
+    } catch (e) {
+        console.log(e)
+        return res.status(500).json(e)
+    }
+}
 
 module.exports.getStudentsWithoutGroupId = async (req, res) => {
     try {
         const students = await Student.find({})
-        const groups = await Group.find({})
-        const studentNoGroup = students.filter(async (student) =>
-        {
-            const group = await Group.findOne({student})
-            return  group === null || group === undefined
-        })
-        return res.status(200).json(groups)
+        const studentNoGroup = []
+        for(const student of students){
+            if(!await Group.findOne({student: student._id})){
+                studentNoGroup.push(student)
+            }
+        }
+        return res.status(200).json(studentNoGroup)
     } catch (e) {
         console.log(e)
         return res.status(500).json(e)
@@ -22,9 +41,14 @@ module.exports.getStudentsWithoutGroupId = async (req, res) => {
 module.exports.getStudentsByGroupId = async (req, res) => {
     try {
         const {groupNumber} = req.params
-        console.log(await Group.find({}));
+        const students = []
         const groups = await Group.find({group: groupNumber})
-        return res.status(200).json(groups)
+        for(const group of groups){
+            students.push(await Student.findOne({
+                _id: group.student
+            }))
+        }
+        return res.status(200).json(students)
     } catch (e) {
         console.log(e)
         return res.status(500).json(e)
@@ -34,10 +58,9 @@ module.exports.getStudentsByGroupId = async (req, res) => {
 module.exports.assignStudentToGroup = async (req, res) => {
     try {
         const {groupNumber, studentId} = req.params;
-        const studentFound = await Student.findOne({_id: studentId});
-        console.log(groupNumber)
+        console.log(studentId)
         return res.status(201).json(await Group.create({
-            student: studentFound,
+            student: studentId,
             group: parseInt(groupNumber)
         }))
     } catch (e) {
@@ -48,8 +71,8 @@ module.exports.assignStudentToGroup = async (req, res) => {
 
 module.exports.unAssignStudentFromGroup = async (req, res) => {
     try {
-        const {groupId} = req.params;
-        return res.status(200).json(await Group.delete({_id: groupId}))
+        const {studentId} = req.params;
+        return res.status(200).json(await Group.deleteOne({student: studentId}))
     } catch (e) {
         console.log(e)
         return res.status(500).json(e)

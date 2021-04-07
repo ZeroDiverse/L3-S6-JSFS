@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const dbHost = 'localhost';
 const dbPort = 27017;
-const dbName = 'studentGroup';
+const dbName = 'student-group';
 const dbURI = `mongodb://${dbHost}:${dbPort}/${dbName}`;
 
 const dbConnection = mongoose.connect(dbURI,
