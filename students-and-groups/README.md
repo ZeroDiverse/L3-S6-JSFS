@@ -86,6 +86,7 @@ ___
 ## TODO ❓
 - [ ] Ajouter animations
 - [ ] Créer authentication
+- [ ] Responsiveness
 - [ ] Et plus je ne sais pas 😝
 ---
 ## Contributers 🔥
