@@ -7,7 +7,7 @@ const Groups = () => {
 
     return (
         <div style={{display: 'flex'}}>
-            <section className="main-content columns is-fullheight" style={{minWidth: '15rem'}}>
+            <section className="main-content columns is-fullheight sidebar" style={{minWidth: '15rem', maxWidth: '100%'}}>
                 <aside className="column is-narrow-mobile is-fullheight section is-hidden-mobile">
                     <p className="menu-label is-hidden-touch">Group number</p>
                     <ul className="menu-list">

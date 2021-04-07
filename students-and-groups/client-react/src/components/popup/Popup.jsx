@@ -11,7 +11,7 @@ const PopUpNotification = (props) => {
     }, [el, mount]);
 
     return createPortal(
-        <div className="notification is-info container" style={{maxWidth: '30rem', position: 'fixed', top: '8rem', left: '0', right: '0'}}>
+        <div className="notification is-info container" style={{maxWidth: '100%', position: 'fixed', top: '8rem', left: '0', right: '0', margin: '0 1rem'}}>
             <button className="delete"/>
             {props.children}
         </div>,

@@ -165,13 +165,13 @@ const Students = () => {
                 </div>
                 <div className={'column'}>
                     <label className="label" style={{visibility: 'hidden'}}>Email</label>
-                    <div className="control">
-                        <button className="button is-primary" type={'submit'}>{buttonText}</button>
+                    <div className="control" style={{display: "flex", justifyContent: 'center'}}>
+                        <button className="button is-primary" type={'submit'} style={{width: '100%'}}>{buttonText}</button>
                     </div>
                 </div>
 
             </form>
-            <table className="table mt-4">
+            <table className="table mt-4" style={{overflowX: 'scroll'}}>
                 <thead>
                 <tr>
                     <th>
@@ -201,10 +201,10 @@ const Students = () => {
                             <th>
                                 {student.studentNumber}
                             </th>
-                            <th>
-                                <button className="button is-info" onClick={() => startUpdateProcess(student)}>Update
+                            <th style={{display: 'flex'}}>
+                                <button  style={{width: '100%'}} className="button is-info" onClick={() => startUpdateProcess(student)}>Update
                                 </button>
-                                <button className="button is-danger ml-3"
+                                <button style={{width: '100%'}} className="button is-danger ml-3"
                                         onClick={() => deleteStudent(student)}>Delete
                                 </button>
                             </th>
