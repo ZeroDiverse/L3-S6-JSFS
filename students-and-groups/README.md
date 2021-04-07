@@ -48,6 +48,10 @@ ___
 ***To Get Started Use:***
 
 #### To start backend
+* First (from root of this project)
+```
+cd server
+```
 * For development
 ```
 npm install
@@ -59,6 +63,10 @@ npm install
 npm start
 ```
 #### To start frontend
+* First (from root of this project)
+```
+cd client-react
+```
 * For development
 ```
 npm install
