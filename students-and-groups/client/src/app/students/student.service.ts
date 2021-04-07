@@ -16,4 +16,12 @@ export class StudentService {
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.baseUrl}/students`);
   }
+
+  createNewStudent(student: Student): Observable<Student> {
+    return this.http.post<Student>(`${this.baseUrl}/students`, student);
+  }
+
+  deleteStudent(studentId: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/students/${studentId}`);
+  }
 }

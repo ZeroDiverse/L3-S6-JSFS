@@ -19,17 +19,39 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.buttonText = 'Create';
-    this.studentForm = new Student('', '', '', '');
+    this.studentForm = new Student();
     this.studentService.getStudents().subscribe((data: Student[]) => this.students = data);
   }
 
   createOrUpdateStudent(student: NgForm): void {
-    console.log(student.value);
+    if (this.buttonText === 'Create') {
+      const studentTemp: Student = {
+        lastname: student.controls.firstname.value,
+        firstname: student.controls.lastname.value,
+        studentNumber: student.controls.studentNumber.value
+      };
+
+      this.studentService.createNewStudent(studentTemp).subscribe((data: Student) => {
+        this.students.push(data);
+        this.studentForm = new Student();
+        student.reset();
+      });
+
+    } else {
+
+    }
+  }
+
+  deleteStudent(studentId: string) {
+    this.studentService.deleteStudent(studentId).subscribe(() => {
+      this.students = this.students.filter(student => student._id !== studentId);
+    });
   }
 
   startUpdateProcess(student: Student): void {
     this.studentForm.firstname = student.firstname;
     this.studentForm.lastname = student.lastname;
     this.studentForm.studentNumber = student.studentNumber;
+    this.buttonText = 'Update';
   }
 }

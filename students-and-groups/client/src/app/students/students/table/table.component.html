@@ -6,9 +6,8 @@
       <label>
         <input class="input" type="text" placeholder="Routier"
                name="lastname"
-               [value]="studentForm.lastname"
                required
-               ngModel=""
+               [ngModel]="studentForm.lastname"
         />
       </label>
     </div>
@@ -20,8 +19,7 @@
       <label>
         <input class="input" type="text" placeholder="Mr. Jean Christophe"
                name="firstname"
-               [value]="studentForm.firstname"
-               ngModel
+               [ngModel]="studentForm.firstname"
                required/>
       </label>
     </div>
@@ -33,9 +31,8 @@
       <label>
         <input class="input" type="text" placeholder="1234567890 A"
                [disabled]="buttonText === 'Update'"
-               [value]="studentForm.studentNumber"
-               name="studentName"
-               ngModel
+               name="studentNumber"
+               [ngModel]="studentForm.studentNumber"
                required
         />
       </label>
@@ -82,6 +79,7 @@
       </button>
       <button class="button is-danger ml-3"
               style="width: 100%"
+              (click)="deleteStudent(student._id)"
       >Delete
       </button>
     </th>
