@@ -1,1 +1,16 @@
-<p>groups works!</p>
+<div style="display: flex">
+  <section class="main-content columns is-fullheight sidebar" style="min-width: 15rem; max-width: 100%">
+    <aside class="column is-narrow-mobile is-fullheight section is-hidden-mobile">
+      <p class="menu-label is-hidden-touch">Group number</p>
+      <ul class="menu-list">
+        <li (click)="setGroupNumber(groupNumber)" *ngFor="let groupNumber of groupNumbers">
+          <a *ngIf="groupNumber === 0"><span class="icon"><i class="fa fa-user"></i></span> No group
+          </a>
+          <a *ngIf="groupNumber !== 0"><span class="icon"><i
+            class="fa fa-user"></i></span> Group {{groupNumber}}</a>
+        </li>
+      </ul>
+    </aside>
+  </section>
+  <app-group-table [groupNumber]="groupNumber" style="width: 100%"></app-group-table>
+</div>

@@ -1,0 +1,77 @@
+<table class="table mt-4" *ngIf="groupNumber === 0">
+  <thead>
+  <tr>
+    <th>
+      Lastname
+    </th>
+    <th>
+      Firstname
+    </th>
+    <th>
+      Student Number
+    </th>
+    <th>
+      Actions
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let student of students">
+    <th>
+      {{student.lastname}}
+    </th>
+    <th>
+      {{student.firstname}}
+    </th>
+    <th>
+      {{student.studentNumber}}
+    </th>
+    <th>
+      <button class="button"
+              style="border-radius: 50%; margin-right: 1rem" *ngFor="let gn of groupNumbers">
+                                    <span class="icon is-small" (click)="assignStudentToGroupByGroupNumber(student, gn)">
+    {{gn}}
+    </span>
+      </button>
+    </th>
+  </tr>
+  </tbody>
+</table>
+<table class="table mt-4" *ngIf="groupNumber !== 0">
+  <thead>
+  <tr>
+    <th>
+      Lastname
+    </th>
+    <th>
+      Firstname
+    </th>
+    <th>
+      Student Number
+    </th>
+    <th>
+      Actions
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let student of students">
+    <th>
+      {{student.lastname}}
+    </th>
+    <th>
+      {{student.firstname}}
+    </th>
+    <th>
+      {{student.studentNumber}}
+    </th>
+    <th>
+      <button class="button is-danger" (click)="unAssignStudentFromGroup(student)">
+                                        <span class="icon is-small">
+                                         <i class="fas fa-times-circle"></i>
+                                        </span>
+      </button>
+    </th>
+  </tr>
+  </tbody>
+</table>
