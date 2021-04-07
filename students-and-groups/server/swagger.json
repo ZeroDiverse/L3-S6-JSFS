@@ -1,0 +1,302 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Etudians et groupes CRUD",
+    "description": "My Student and Group API"
+  },
+  "host": "localhost:8080",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Students",
+      "description": "API for students in the system"
+    },
+    {
+      "name": "Groups",
+      "description": "API for groups in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/groups": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Get all groups in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        }
+      }
+    },
+    "/groups/students": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Get all students that doesn't have a group in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        }
+      }
+    },
+    "/groups/:groupNumber/students": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Get all students that is in the group with group number in parameter have a group in system",
+        "parameters": [
+          {
+            "description": "Number of the group",
+            "type": "number",
+            "name": "groupNumber",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        }
+      }
+    },
+    "/groups/:groupNumber/students/:studenId": {
+      "post": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Assign a student to a group a group in system",
+        "parameters": [
+          {
+            "name": "groupNumber",
+            "in": "path",
+            "type": "number",
+            "required": true,
+            "description": "Group number from 1 to 6"
+          },
+          {
+            "name": "studentId",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "CREATED",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        }
+      }
+    },
+    "/groups/students/:studentId": {
+      "patch": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Unassigned a student from a group in system",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        }
+      }
+    },
+    "/students": {
+      "get": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Get all students in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Create a new students to the system",
+        "parameters": [
+          {
+            "name": "firstname",
+            "in": "body",
+            "description": "Firstname of the student",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "lastname",
+            "in": "body",
+            "description": "Lastname of the student",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "studentNumber",
+            "in": "body",
+            "description": "Student Number of the student, should be unique",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "CREATED",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Update a student in system",
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "body",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "firstname",
+            "in": "body",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "lastname",
+            "in": "body",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        }
+      }
+    },
+    "/students/:studentId": {
+      "delete": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Delete a student with studentId from system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Group": {
+      "required": [
+        "groupNumber",
+        "_id",
+        "student"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "student": {
+          "type": "string"
+        },
+        "groupNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "Student": {
+      "required": [
+        "lastname",
+        "_id",
+        "firstname",
+        "studentNumber"
+      ],
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "studentNumber": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

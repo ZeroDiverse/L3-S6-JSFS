@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Student} from '../../../models/student';
+import {StudentService} from "../../student.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-table',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  constructor() { }
+  buttonText: string;
+  students: Student[];
+  studentForm: Student;
 
-  ngOnInit(): void {
+  constructor(private studentService: StudentService) {
   }
 
+  ngOnInit(): void {
+    this.buttonText = 'Create';
+    this.studentForm = new Student('', '', '', '');
+    this.studentService.getStudents().subscribe((data: Student[]) => this.students = data);
+  }
+
+  createOrUpdateStudent(student: NgForm): void {
+    console.log(student.value);
+  }
+
+  startUpdateProcess(student: Student): void {
+    this.studentForm.firstname = student.firstname;
+    this.studentForm.lastname = student.lastname;
+    this.studentForm.studentNumber = student.studentNumber;
+  }
 }

@@ -43,7 +43,7 @@ ___
 3. [SCSS](https://sass-lang.com/) (SASS)
 4. [Bulma](https://bulma.io/) (Bulma Styling library)
 5. [MongoDB](https://www.mongodb.com/fr) (NoSQL Database)
-6. ...
+6. [SwaggerUI] (https://swagger.io/tools/swagger-ui/) (API Documentation)
 ___
 ***To Get Started Use:***
 
@@ -79,6 +79,20 @@ npm run build
 ```
 
 ### Browser will automatically open at http://localhost:3000 - React default port and server will run at http://localhost:8080
+___
+## REST API Endpoints
+
+### Tous de cela, vous pouvez accéder endpoint: http://localhost:8080/api-docs/ pour voir. 
+
+- GET /api/groups: GET tous les groups
+- GET /api/groups/students: GET tous les étudiants sans group
+- GET /api/groups/:groupNumber/students/:studentId: GET tous les étudiants dans le :groupNumber
+- POST /api/groups/:groupsNumber/students/:studentId: POST - créer le group avec identifiant de l'étudiant et nombre de la groupe
+- PATCH /api/groups/students/:studentId: PATCH - supprimer l'étudiant de la groupe
+- GET /api/students: GET tous le étudiants
+- POST /api/students: POST - créer un nouveau étudiant
+- PATCH /api/students: PATCH - mise à jour des informations du étudiant
+- DELETE /api/students/:studentId: DELETE - supprimer l'étudiant
 ___
 ## What have we done ✔️
 - [x] Comme sujet

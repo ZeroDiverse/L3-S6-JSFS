@@ -1,23 +1,90 @@
-<div class="container">
-  <table class="table">
-    <thead>
-    <tr>
-      <th>
-        Lastname
-      </th>
-      <th>
-        Firstname
-      </th>
-      <th>
-        Student Number
-      </th>
-      <th>
-        Actions
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-</div>
+<form #student="ngForm" class="columns box" onSubmit={createOrUpdateStudent}
+      (ngSubmit)="createOrUpdateStudent(student)">
+  <div class="column">
+    <label class="label">Lastname</label>
+    <div class="control">
+      <label>
+        <input class="input" type="text" placeholder="Routier"
+               name="lastname"
+               [value]="studentForm.lastname"
+               required
+               ngModel=""
+        />
+      </label>
+    </div>
+  </div>
 
+  <div class="column">
+    <label class="label">Firstname</label>
+    <div class="control">
+      <label>
+        <input class="input" type="text" placeholder="Mr. Jean Christophe"
+               name="firstname"
+               [value]="studentForm.firstname"
+               ngModel
+               required/>
+      </label>
+    </div>
+  </div>
+
+  <div class="column">
+    <label class="label">Student Number</label>
+    <div class="control">
+      <label>
+        <input class="input" type="text" placeholder="1234567890 A"
+               [disabled]="buttonText === 'Update'"
+               [value]="studentForm.studentNumber"
+               name="studentName"
+               ngModel
+               required
+        />
+      </label>
+    </div>
+  </div>
+  <div class="column">
+    <label class="label" style="visibility: hidden">Email</label>
+    <div class="control create-button-wrapper">
+      <button class="button is-primary" type="submit">{{buttonText}}</button>
+    </div>
+  </div>
+
+</form>
+<table class="table mt-4">
+  <thead>
+  <tr>
+    <th>
+      Lastname
+    </th>
+    <th>
+      Firstname
+    </th>
+    <th>
+      Student Number
+    </th>
+    <th>
+      Actions
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let student of students">
+    <th>
+      {{student.lastname}}
+    </th>
+    <th>
+      {{student.firstname}}
+    </th>
+    <th>
+      {{student.studentNumber}}
+    </th>
+    <th style="display: flex">
+      <button class="button is-info" style="width: 100%" (click)="startUpdateProcess(student)">Update
+      </button>
+      <button class="button is-danger ml-3"
+              style="width: 100%"
+      >Delete
+      </button>
+    </th>
+  </tr>
+  </tbody>
+</table>
