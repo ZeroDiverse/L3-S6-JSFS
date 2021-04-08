@@ -1,7 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {StudentsModule} from "./students/students.module";
-import {GroupsModule} from "./groups/groups.module";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 
 const routes: Routes = [

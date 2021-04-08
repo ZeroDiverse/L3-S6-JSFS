@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Student} from '../../../models/student';
-import {StudentService} from "../../student.service";
-import {NgForm} from "@angular/forms";
+import {StudentService} from '../../student.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-table',
@@ -13,6 +13,8 @@ export class TableComponent implements OnInit {
   buttonText: string;
   students: Student[];
   studentForm: Student;
+  popupContent: string;
+  isPopupOpen: boolean;
 
   constructor(private studentService: StudentService) {
   }

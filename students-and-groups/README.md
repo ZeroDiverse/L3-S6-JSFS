@@ -43,7 +43,7 @@ ___
 3. [SCSS](https://sass-lang.com/) (SASS)
 4. [Bulma](https://bulma.io/) (Bulma Styling library)
 5. [MongoDB](https://www.mongodb.com/fr) (NoSQL Database)
-6. [SwaggerUI] (https://swagger.io/tools/swagger-ui/) (API Documentation)
+6. [SwaggerUI](https://swagger.io/tools/swagger-ui/) (API Documentation)
 ___
 ***To Get Started Use:***
 

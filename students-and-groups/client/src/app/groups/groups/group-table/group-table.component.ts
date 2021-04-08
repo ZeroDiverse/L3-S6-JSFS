@@ -18,7 +18,7 @@ export class GroupTableComponent implements OnInit {
   private _groupNumber: number;
 
   @Input() set groupNumber(value: number) {
-
+    this.students = [];
     this._groupNumber = value;
     if (this.groupNumber === 0) {
       this.groupService.getStudentsWithoutGroupId().subscribe((data: Student[]) => this.students = data);
