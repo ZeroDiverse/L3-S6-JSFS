@@ -63,9 +63,24 @@ npm install
 npm start
 ```
 #### To start frontend
-* First (from root of this project)
+* First (from root of this project) - Version React
 ```
 cd client-react
+```
+* For development
+```
+npm install
+npm start
+```
+* For production
+```
+npm install
+npm run build
+```
+
+* Second (from root of this project) - Version Angular
+```
+cd client
 ```
 * For development
 ```
