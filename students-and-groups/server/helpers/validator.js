@@ -1,3 +1,10 @@
+/**
+ * This function is a validation function for lastnale studentNumber of firstname
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ */
 module.exports.verifyStudentData = (req, res, next) => {
     const {firstname, lastname, studentNumber} = req.body
 

@@ -18,6 +18,12 @@ module.exports.getAllStudents = async (req, res) => {
     }
 }
 
+/**
+ * Create a new student
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 module.exports.createNewStudent = async (req, res) => {
     const {firstname, lastname, studentNumber} = req.body
     const verifiedLastname = lastname.toUpperCase()
@@ -39,6 +45,12 @@ module.exports.createNewStudent = async (req, res) => {
     }
 }
 
+/**
+ * Update the student in the system
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 module.exports.updateStudent = async (req, res) => {
     const {_id, firstname, lastname} = req.body
     const verifiedLastname = lastname.toUpperCase()

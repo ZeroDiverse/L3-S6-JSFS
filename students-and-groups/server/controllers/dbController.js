@@ -1,11 +1,16 @@
 // fichier ./controllers/dbConnection.js
 const mongoose = require('mongoose');
 
+//Host of the database
 const dbHost = 'localhost';
+//Port of the database
 const dbPort = 27017;
+//Name of the database
 const dbName = 'student-group';
+//URI of the database
 const dbURI = `mongodb://${dbHost}:${dbPort}/${dbName}`;
 
+//Connect to the database
 const dbConnection = mongoose.connect(dbURI,
     {
         useNewUrlParser: true,

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from '../../../api/server';
 import PopUpNotification from '../../popup/Popup';
 
-const GroupTable = ({ groupNumber }) => {
+const GroupTable = ({ groupNumber, groupNumbers }) => {
   const [students, setStudents] = useState([]);
-  const groupNumbers = [1, 2, 3, 4, 5, 6];
   const [actionDescriptionText, setActionDescriptionText] = useState('');
 
   const setStudentToGroupNumber = async (student, groupNumber) => {

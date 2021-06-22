@@ -2,6 +2,12 @@ const {StudentModel} = require('../models/Student')
 const Student = StudentModel
 const Group = require('../models/Group')
 
+/**
+ * Get all the groups from the system
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 module.exports.getAllGroups = async (req, res) => {
     try {
         const groups = await Group.find({})
@@ -12,6 +18,12 @@ module.exports.getAllGroups = async (req, res) => {
     }
 }
 
+/**
+ * Delete all the groups in the system
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 module.exports.deleteAllGroups = async (req, res) => {
     try {
         const groups = await Group.deleteMany({})
@@ -22,10 +34,18 @@ module.exports.deleteAllGroups = async (req, res) => {
     }
 }
 
+/**
+ * Get all the students without group in the system
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 module.exports.getStudentsWithoutGroupId = async (req, res) => {
     try {
+        //Get all the students
         const students = await Student.find({})
         const studentNoGroup = []
+        //Check if the student is not in group then add to the studentNoGroup TODO: Optimize this one
         for(const student of students){
             if(!await Group.findOne({student: student._id})){
                 studentNoGroup.push(student)
@@ -38,6 +58,12 @@ module.exports.getStudentsWithoutGroupId = async (req, res) => {
     }
 }
 
+/**
+ * Get all the students by group id in the system
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 module.exports.getStudentsByGroupId = async (req, res) => {
     try {
         const {groupNumber} = req.params
@@ -55,6 +81,12 @@ module.exports.getStudentsByGroupId = async (req, res) => {
     }
 }
 
+/**
+ * assign student to a group
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 module.exports.assignStudentToGroup = async (req, res) => {
     try {
         const {groupNumber, studentId} = req.params;
@@ -69,6 +101,13 @@ module.exports.assignStudentToGroup = async (req, res) => {
     }
 }
 
+
+/**
+ * Unassigned the student from the group
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 module.exports.unAssignStudentFromGroup = async (req, res) => {
     try {
         const {studentId} = req.params;
