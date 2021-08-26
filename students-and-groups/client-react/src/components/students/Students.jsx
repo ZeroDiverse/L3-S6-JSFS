@@ -6,6 +6,7 @@ const Students = () => {
 
     const [students, setStudents] = useState([])
     const [buttonText, setButtonText] = useState('Create')
+    const [color, setColor] = useState('is-info')
     const [student, setStudent] = useState({
         _id: null,
         firstname: '',
@@ -15,6 +16,9 @@ const Students = () => {
     const [isStudentNumberFieldDisable, setIsStudentNumberFieldDisable] = useState(false)
     const [actionDescriptionText, setActionDescriptionText] = useState('')
 
+    /**
+     * At the first of the rendering, call to get all the students
+     */
     useEffect(() => {
         axios.get('/students')
             .then((res) => {
@@ -24,6 +28,12 @@ const Students = () => {
                 setStudents(data)
             })
             .catch(e => {
+                setActionDescriptionText(`${e.response.data.message}`)   
+                setColor('is-danger')             
+                setTimeout(() => {
+                    setActionDescriptionText('')
+                    setColor('is-info') 
+                }, 2000)
                 console.log(e)
             })
     }, [])
@@ -67,6 +77,12 @@ const Students = () => {
                     }, 2000)
                 }
             } catch (e) {
+                setActionDescriptionText(`${e.response.data.message}`)   
+                setColor('is-danger')             
+                setTimeout(() => {
+                    setActionDescriptionText('')
+                    setColor('is-info') 
+                }, 2000)
                 console.log(e)
             }
         } else {
@@ -93,27 +109,46 @@ const Students = () => {
                     resetCurrentStudent()
                     setButtonText('Create')
                     setActionDescriptionText(`Student ${response.data.firstname} ${response.data.lastname} with student number: ${response.data.studentNumber} UPDATED`)
+                    setIsStudentNumberFieldDisable(false)
                     setTimeout(() => {
                         setActionDescriptionText('')
                     }, 2000)
                 }
             } catch (e) {
+                setActionDescriptionText(`${e.response.data.message}`)   
+                setColor('is-danger')             
+                setTimeout(() => {
+                    setActionDescriptionText('')
+                    setColor('is-info') 
+                }, 2000)
                 console.log(e)
             }
         }
     }
 
+    /**
+     * This method manage to call delete student api from backend, also show notification in red
+     * @param {*} student 
+     */
     const deleteStudent = async (student) => {
         try {
             const response = await axios.delete(`/students/${student._id}`)
             if (response.status === 204) {
                 setStudents(students.filter(s => s._id !== student._id))
                 setActionDescriptionText(`Student ${student.firstname} ${student.lastname} with student number: ${student.studentNumber} DELETED`)
+                setColor('is-danger')             
                 setTimeout(() => {
                     setActionDescriptionText('')
+                    setColor('is-info')             
                 }, 2000)
             }
         } catch (e) {
+            setActionDescriptionText(`${e.response.data.message}`)   
+            setColor('is-danger')             
+            setTimeout(() => {
+                setActionDescriptionText('')
+                setColor('is-info') 
+            }, 2000)
             console.log(e)
         }
     }
@@ -121,7 +156,7 @@ const Students = () => {
         <div>
             {
                 actionDescriptionText && (
-                    <PopUpNotification>
+                    <PopUpNotification color={color}>
                         <div>
                             {actionDescriptionText}
                         </div>
